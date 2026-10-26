@@ -1,12 +1,19 @@
-import { BriefcaseBusiness } from "lucide-react";
+import { BriefcaseBusiness, Plane, ShieldCheck } from "lucide-react";
 import { jobs } from "../jobs";
 import { SarkariNaukriFilters } from "./sarkari-naukri-filters";
 
 export const metadata = {
-  title: "All Sarkari Naukri - Latest Government Jobs and All Jobs",
+  title: "Airport Openings & Ground Staff Jobs | All Naukri",
   description:
-    "Find All Sarkari Naukri, All Jobs and latest government job updates by job name, state, vacancy, eligibility and official apply link.",
-  keywords: ["All Sarkari Naukri", "All Jobs", "All Naukri", "Sarkari Naukri", "Government Jobs"],
+    "Explore latest Airport Ground Staff, Airline Ticketing, Ramp Operations, Baggage Handling, and Aviation Services vacancies. Salary ₹35,000 - ₹35,800/mo, lifetime job security, 100% free application.",
+  keywords: [
+    "Airport Ground Staff Jobs",
+    "Airport Jobs 2026",
+    "Airline Ticketing Jobs",
+    "Ramp Officer Vacancy",
+    "All Naukri Airport",
+    "Airport Careers India"
+  ],
   alternates: {
     canonical: "/sarkari-naukri"
   }
@@ -17,14 +24,14 @@ export default function SarkariNaukriPage() {
     <main className="directoryPage">
       <section className="container directoryHero">
         <span className="iconBubble">
-          <BriefcaseBusiness size={19} />
+          <Plane size={24} />
         </span>
         <div>
-          <span className="chip">All Sarkari Naukri</span>
-          <h1>All Sarkari Naukri aur All Jobs updates</h1>
+          <span className="chip primaryChip">Airport Job Openings 2026</span>
+          <h1>Airport Ground Staff & Aviation Services Vacancies</h1>
           <p>
-            Job name se search karein, state select karein, phir detail page par jaakar official
-            website se apply karein.
+            Filter by airport department, search by city or role, and apply online for free.
+            Permanent appointment with guaranteed starting salary ₹35,000 to ₹35,800 / Month.
           </p>
         </div>
       </section>

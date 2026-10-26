@@ -1,9 +1,10 @@
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
-  title: "Disclaimer | All Naukri Update",
+  title: "Disclaimer | All Naukri Airport Services",
   description:
-    "Read the Disclaimer for All Naukri Update, including government affiliation, official verification, external links and advertisement disclaimer.",
+    "Official Disclaimer for All Naukri (allnaukri.in) regarding airport ground staff recruitment facilitation, zero-fee commitment, and verification.",
   alternates: {
     canonical: "/disclaimer"
   }
@@ -15,100 +16,74 @@ export default function DisclaimerPage() {
       <section className="container legalShell">
         <div className="legalHero softPanel">
           <span className="iconBubble">
-            <AlertTriangle size={19} />
+            <AlertTriangle size={22} />
           </span>
           <div>
-            <span className="chip">Disclaimer</span>
+            <span className="chip primaryChip">Official Notice</span>
             <h1>Disclaimer</h1>
             <p>
-              The information provided on All Naukri Update is published in good faith and for
-              general informational and educational purposes only.
+              Information and recruitment facilitation notice for All Naukri Airport Services (allnaukri.in).
             </p>
           </div>
         </div>
 
         <article className="legalContent softPanel">
           <section className="legalBlock">
-            <h2>Disclaimer</h2>
+            <h2>1. Aviation Manpower & Placement Facilitation</h2>
             <p>
-              While we strive to keep the information accurate, complete, and up to date, we make no
-              warranties or representations regarding the accuracy, reliability, suitability, or
-              availability of any information on this website.
+              The information provided on <strong>allnaukri.in</strong> is published in good faith to
+              facilitate employment for ground staff, passenger assistance, ticketing, ramp, and aviation
+              support services across Indian airports.
             </p>
           </section>
 
           <section className="legalBlock">
-            <h2>Not an Official Government Website</h2>
+            <h2>2. 100% Free Placement Commitment</h2>
             <p>
-              All Naukri Update is <strong>not affiliated with, endorsed by, or associated with any
-              government organization, ministry, department, or agency</strong>. We are an
-              independent informational website that collects and shares publicly available
-              information related to Sarkari Jobs, Government Schemes, Results, Admit Cards,
-              Admissions, and other educational updates.
+              All Naukri operates on a zero-charge model. We do not demand or accept any fee from applicants
+              for application forms, interview appointments, or document verification. We strongly advise
+              candidates never to transfer funds to any individual claiming to charge for airport jobs.
             </p>
           </section>
 
           <section className="legalBlock">
-            <h2>Verify Information from Official Sources</h2>
+            <h2>3. Lifetime Job Guarantee Notice</h2>
             <p>
-              Although we make every effort to provide accurate information, users are strongly
-              advised to verify all details through the official website, official notification, or
-              authorized source before making any decision, submitting an application, paying fees,
-              or taking any action.
-            </p>
-            <p>
-              We will not be responsible for any loss, error, or inconvenience caused by the use of
-              information available on this website.
+              The &quot;Lifetime Job Security&quot; provision refers to permanent employment contracts
+              free from arbitrary termination or project-based layoffs. Continuance of service is subject
+              to standard airport security clearance, BCAS compliance, and adherence to company code of conduct.
             </p>
           </section>
 
           <section className="legalBlock">
-            <h2>External Links Disclaimer</h2>
+            <h2>4. Salary and Benefits Disclosure</h2>
             <p>
-              Our website may contain links to third-party websites for additional information and
-              convenience. We do not control or guarantee the accuracy, relevance, or reliability of
-              content on external websites and are not responsible for any loss or damage resulting
-              from their use.
+              The starting monthly salary package of <strong>₹35,000 to ₹35,800 / Month</strong> represents
+              the gross compensation including duty allowances, subject to mandatory PF and ESIC statutory
+              deductions.
             </p>
           </section>
 
           <section className="legalBlock">
-            <h2>Advertisement Disclaimer</h2>
+            <h2>5. Contact & Fraud Vigilance</h2>
             <p>
-              This website may display advertisements from third-party advertising partners,
-              including Google AdSense. These advertisements may use cookies and similar technologies
-              to provide personalized ads and improve advertising performance.
+              If you have any doubts regarding any recruitment communication, please verify with our authorized desk:
             </p>
-            <p>For more information about how Google uses data, please visit:</p>
             <p>
-              <a href="https://policies.google.com/technologies/partner-sites" rel="noreferrer" target="_blank">
-                https://policies.google.com/technologies/partner-sites
-              </a>
+              Official HR Email: <strong>hr@allnaukri.in</strong><br />
+              Official HR Helpline: <strong>+91 8929103286</strong><br />
+              Recruitment Center: Aerocity Aviation Logistics Hub, IGI Airport Zone, New Delhi - 110037
             </p>
           </section>
 
-          <section className="legalBlock">
-            <h2>Consent</h2>
-            <p>
-              By using our website, you hereby consent to this Disclaimer and agree to its terms.
-            </p>
-          </section>
-
-          <section className="legalBlock">
-            <h2>Updates</h2>
-            <p>
-              We reserve the right to modify, update, or change this Disclaimer at any time without
-              prior notice. Any updates will be posted on this page.
-            </p>
-          </section>
-
-          <section className="legalBlock">
-            <h2>Contact Us</h2>
-            <p>If you have any questions regarding this Disclaimer, please contact us:</p>
-            <p>
-              Email: <a href="mailto:Gulshanyadav62000@gmail.com">Gulshanyadav62000@gmail.com</a>
-            </p>
-          </section>
+          <div className="aboutCtaRow">
+            <Link href="/apply" className="btnPrimary btnLarge btnGlow">
+              <span>Apply Online Now</span>
+            </Link>
+            <Link href="/contact" className="btnSecondary btnLarge">
+              <span>Contact HR Support</span>
+            </Link>
+          </div>
         </article>
       </section>
     </main>

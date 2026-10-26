@@ -1,230 +1,467 @@
-export const jobs = [
+export interface AirportJob {
+  slug: string;
+  type: string;
+  category: string;
+  title: string;
+  salary: string;
+  security: string;
+  body: string;
+  org: string;
+  state: string;
+  airport: string;
+  date: string;
+  vacancies: string;
+  qualification: string;
+  ageLimit: string;
+  gender: string;
+  fee: string;
+  contactNumber: string;
+  contactEmail: string;
+  badge?: string;
+  benefits: string[];
+  responsibilities: string[];
+  importantDates: string[];
+  selectionProcess: string[];
+  howToApply: string[];
+}
+
+export const airportCategories = [
+  { id: "all", name: "All Airport Openings", count: "800+ Vacancies" },
+  { id: "ground-staff", name: "Ground Staff & Terminal", count: "240+ Posts" },
+  { id: "ticketing", name: "Ticketing & Check-In", count: "160+ Posts" },
+  { id: "ramp-baggage", name: "Ramp & Baggage Handling", count: "180+ Posts" },
+  { id: "security", name: "Security & Screening", count: "95+ Posts" },
+  { id: "cargo", name: "Cargo & Logistics", count: "75+ Posts" },
+  { id: "lounge", name: "VIP Lounge & Hospitality", count: "50+ Posts" }
+];
+
+export const jobs: AirportJob[] = [
   {
-    slug: "ssc-chsl-2026-demo",
-    type: "Sarkari Naukri",
-    title: "SSC CHSL 10+2 Recruitment 2026",
-    body: "Demo vacancy for LDC, JSA and Data Entry Operator posts.",
-    org: "Staff Selection Commission",
-    state: "UP",
-    date: "30 Jun",
-    officialLink: "https://ssc.gov.in",
-    applyText: "Apply on SSC official website",
-    vacancies: "3712 posts",
-    qualification: "Class 12th passed from a recognized board.",
-    ageLimit: "18 to 27 years as on the notification date. Age relaxation as per rules.",
-    fee: "General/OBC/EWS: Rs. 100. SC/ST/PwD/Female: No fee.",
-    importantDates: [
-      "Application start: 03 June 2026",
-      "Last date to apply: 30 June 2026",
-      "Admit card: Before exam",
-      "Exam date: As per official schedule"
+    slug: "airport-ground-staff-customer-executive",
+    type: "Ground Staff",
+    category: "ground-staff",
+    title: "Airport Ground Staff & Customer Service Executive",
+    salary: "₹35,000 - ₹35,800 / Month",
+    security: "Lifetime Job Assurance (Permanent tenure - no arbitrary termination)",
+    body: "Provide seamless passenger assistance, boarding gate coordination, wheelchair assistance, and queue management at domestic & international airport departure halls.",
+    org: "All Naukri Airport Services",
+    state: "Delhi NCR / Pan-India",
+    airport: "Indira Gandhi International Airport (IGI T1, T2, T3) & All Major Hubs",
+    date: "Immediate Joining",
+    vacancies: "240 Openings",
+    qualification: "12th Pass or Any Graduate (Freshers & Experienced both eligible)",
+    ageLimit: "18 to 32 Years (Male & Female)",
+    gender: "Male & Female Both",
+    fee: "₹0 (100% Free Application & Lifetime Placement)",
+    contactNumber: "8929103286",
+    contactEmail: "hr@allnaukri.in",
+    badge: "Most Popular",
+    benefits: [
+      "Starting Salary ₹35,000 to ₹35,800 + Monthly Performance Incentive",
+      "Provident Fund (PF) & Employee State Insurance (ESI) coverage",
+      "Airport Duty Meal coupons & Complimentary Refreshments",
+      "Free Cab Pickup & Drop facility for late / night shift duties",
+      "Lifetime Job Security: Permanent appointment with no layoff risk"
     ],
-    selectionProcess: ["Computer based test", "Skill test / typing test", "Document verification"],
+    responsibilities: [
+      "Welcoming travelers at airport entry gates and flight departure halls",
+      "Assisting senior citizens, unescorted minors, and wheelchair passengers",
+      "Guiding passengers toward security check, boarding gates, and transit lounges",
+      "Announcing boarding calls and coordinating smoothly with cabin crew"
+    ],
+    importantDates: [
+      "Online Application Start: Live & Ongoing",
+      "Document Verification: Within 24-48 Hours of Application",
+      "HR Telephonic Round: Immediate calling upon review",
+      "Joining Date: Direct Joining on next batch schedule"
+    ],
+    selectionProcess: [
+      "Step 1: Free Online Application Submission on All Naukri portal",
+      "Step 2: HR Document & Age Verification (10th/12th Marksheet & Aadhaar)",
+      "Step 3: Brief Telephonic / Virtual Interaction (Basic Communication)",
+      "Step 4: Medical Fitness Check & Airport Security Clearance (BCAS norms)",
+      "Step 5: Issuance of Appointment Letter & Airport Entry Pass (AEP)"
+    ],
     howToApply: [
-      "Open the official website link.",
-      "Register or login with your candidate details.",
-      "Fill the application form carefully.",
-      "Upload documents, pay fee if applicable, and submit."
+      "Click on the 'Apply Online Now' button or call HR helpline at 8929103286.",
+      "Fill your Name, Mobile Number, Education, and Preferred Airport City.",
+      "Submit the application form without any registration fees (100% Free).",
+      "Save your Application Tracking ID; our HR desk will contact you within 24 hours."
     ]
   },
   {
-    slug: "railway-group-d-2026-demo",
-    type: "Railway Job",
-    title: "Railway Group D Recruitment 2026",
-    body: "Demo railway job update for track maintainer and helper posts.",
-    org: "Railway Recruitment Board",
-    state: "Rajasthan",
-    date: "15 Jul",
-    officialLink: "https://www.rrbapply.gov.in",
-    applyText: "Apply on RRB official website",
-    vacancies: "32438 posts",
-    qualification: "Class 10th passed or ITI from a recognized institute.",
-    ageLimit: "18 to 33 years. Age relaxation as per railway recruitment rules.",
-    fee: "General/OBC/EWS: Rs. 500. SC/ST/Female/EBC: Rs. 250.",
-    importantDates: [
-      "Application start: 10 June 2026",
-      "Last date to apply: 15 July 2026",
-      "Correction window: After application close",
-      "Exam date: To be notified"
+    slug: "airport-ticketing-boarding-pass-assistant",
+    type: "Ticketing & Check-In",
+    category: "ticketing",
+    title: "Airline Ticketing & Boarding Pass Counter Assistant",
+    salary: "₹35,200 - ₹35,800 / Month",
+    security: "Lifetime Job Assurance (Permanent tenure - no arbitrary termination)",
+    body: "Manage passenger check-in counters, issue boarding passes, verify seat allotments, and assist travelers with baggage check-in procedures.",
+    org: "All Naukri Airport Services",
+    state: "Mumbai / All India",
+    airport: "Chhatrapati Shivaji Maharaj International Airport (CSMIA T1 & T2)",
+    date: "Immediate Joining",
+    vacancies: "160 Openings",
+    qualification: "12th Pass or Bachelor's Degree in any discipline",
+    ageLimit: "18 to 30 Years",
+    gender: "Male & Female Both",
+    fee: "₹0 (100% Free Application)",
+    contactNumber: "8929103286",
+    contactEmail: "hr@allnaukri.in",
+    badge: "High Demand",
+    benefits: [
+      "Fixed In-Hand Salary ₹35,200 - ₹35,800 / Month",
+      "Overtime allowance for peak travel festival seasons",
+      "Uniform and grooming kits provided by company",
+      "ESIC Medical healthcare for self and dependent family",
+      "Lifetime Job Security guarantee"
     ],
-    selectionProcess: ["CBT exam", "Physical efficiency test", "Document verification", "Medical test"],
+    responsibilities: [
+      "Checking valid Government Photo IDs and airline booking details",
+      "Generating and printing passenger boarding passes and bag tags",
+      "Assisting travelers with excess baggage policies and seat upgrades",
+      "Operating computer reservation systems at departure check-in bays"
+    ],
+    importantDates: [
+      "Application Mode: 100% Online Free",
+      "Slot Booking: Rolling interviews daily",
+      "Batch Training: 3 Days Airport Familiarization (Paid)",
+      "Joining: Immediate on documentation clearance"
+    ],
+    selectionProcess: [
+      "Step 1: Fill out online application form with valid contact number",
+      "Step 2: Basic document verification by HR Recruitment Team",
+      "Step 3: Verification of basic computer literacy and spoken language",
+      "Step 4: Formal Airport Identity Pass registration",
+      "Step 5: Final appointment letter with ₹35,200 - ₹35,800 starting pay"
+    ],
     howToApply: [
-      "Visit the official RRB apply portal.",
-      "Choose your railway zone and recruitment notice.",
-      "Complete registration and application form.",
-      "Submit fee and download the final form."
+      "Fill the online application on allnaukri.in with active WhatsApp number.",
+      "Receive your candidate registration reference number.",
+      "Attend the verification call from 8929103286 or HR email hr@allnaukri.in.",
+      "Collect joining kit and report to assigned terminal desk."
     ]
   },
   {
-    slug: "bpsc-clerk-2026-demo",
-    type: "State Job",
-    title: "BPSC Clerk Recruitment 2026",
-    body: "Demo Bihar government vacancy for clerk and office assistant posts.",
-    org: "Bihar Public Service Commission",
-    state: "Bihar",
-    date: "22 Jul",
-    officialLink: "https://bpsc.bihar.gov.in",
-    applyText: "Apply on BPSC official website",
-    vacancies: "1240 posts",
-    qualification: "Graduation from a recognized university with basic computer knowledge.",
-    ageLimit: "21 to 37 years. Category relaxation as per Bihar government rules.",
-    fee: "General/OBC/EWS: Rs. 600. SC/ST/Female: Rs. 150.",
-    importantDates: [
-      "Application start: 18 June 2026",
-      "Last date to apply: 22 July 2026",
-      "Admit card: Before exam",
-      "Pre exam date: To be notified"
+    slug: "airport-ramp-baggage-handling-assistant",
+    type: "Ramp Operations",
+    category: "ramp-baggage",
+    title: "Airport Ramp Officer & Baggage Handling Assistant",
+    salary: "₹35,000 - ₹35,600 / Month",
+    security: "Lifetime Job Assurance (Permanent tenure - no arbitrary termination)",
+    body: "Handle tarmac luggage loading/unloading, conveyor belt sorting, aircraft turnaround support, and tarmac safety escort under aviation protocols.",
+    org: "All Naukri Airport Services",
+    state: "Bangalore / All India",
+    airport: "Kempegowda International Airport (BLR) & Regional Hubs",
+    date: "Immediate Joining",
+    vacancies: "180 Openings",
+    qualification: "10th Pass or 12th Pass (No prior experience necessary)",
+    ageLimit: "18 to 35 Years",
+    gender: "Male Candidates Preferred for Ramp Operations",
+    fee: "₹0 (100% Free Registration)",
+    contactNumber: "8929103286",
+    contactEmail: "hr@allnaukri.in",
+    badge: "No Experience Needed",
+    benefits: [
+      "Monthly Salary ₹35,000 - ₹35,600 + High Overtime Earning Potential",
+      "Safety gear, high-vis neon jackets, safety boots and ear protection provided",
+      "Daily canteen meal allowance and subsidized transport",
+      "Permanent employment contract with lifetime job security guarantee",
+      "Annual bonus and Provident Fund accumulation"
     ],
-    selectionProcess: ["Preliminary exam", "Main exam", "Typing test", "Document verification"],
+    responsibilities: [
+      "Careful sorting and loading of passenger baggage into aircraft cargo holds",
+      "Operating conveyor belt loaders and luggage trolley carts",
+      "Ensuring luggage tags match flight codes accurately to prevent misrouting",
+      "Adhering to strict airport tarmac safety and airside hygiene norms"
+    ],
+    importantDates: [
+      "Open Enrolment: Active",
+      "Physical Fitness Verification: On-site",
+      "Safety Induction: 2 Days",
+      "Deployment: Immediate"
+    ],
+    selectionProcess: [
+      "Step 1: Online Registration at allnaukri.in",
+      "Step 2: Physical fitness confirmation (Normal health standards)",
+      "Step 3: Document check (Aadhaar Card, 10th Certificate, Bank Account)",
+      "Step 4: Airside Security Background Clearance",
+      "Step 5: Direct Airport Terminal Deployment"
+    ],
     howToApply: [
-      "Open the official BPSC website.",
-      "Check the latest recruitment advertisement.",
-      "Fill the online application form.",
-      "Upload documents and save the submitted form."
+      "Apply through the quick mobile form on allnaukri.in.",
+      "Candidates can also WhatsApp their details directly to 8929103286.",
+      "Report to the nearest airport induction centre as directed by HR.",
+      "Get onboarded with permanent lifetime job assurance."
     ]
   },
   {
-    slug: "ibps-po-2026-demo",
-    type: "Bank Job",
-    title: "IBPS PO Recruitment 2026",
-    body: "Demo bank job update for Probationary Officer posts.",
-    org: "Institute of Banking Personnel Selection",
-    state: "Madhya Pradesh",
-    date: "05 Aug",
-    officialLink: "https://www.ibps.in",
-    applyText: "Apply on IBPS official website",
-    vacancies: "4455 posts",
-    qualification: "Bachelor degree in any stream from a recognized university.",
-    ageLimit: "20 to 30 years. Age relaxation as per IBPS rules.",
-    fee: "General/OBC/EWS: Rs. 850. SC/ST/PwD: Rs. 175.",
-    importantDates: [
-      "Application start: 01 July 2026",
-      "Last date to apply: 05 August 2026",
-      "Pre admit card: Before exam",
-      "Pre exam date: As per official notice"
+    slug: "airport-security-assistant-screener",
+    type: "Security & Verification",
+    category: "security",
+    title: "Airport Security Assistant & Boarding Gate Screener",
+    salary: "₹35,500 - ₹35,800 / Month",
+    security: "Lifetime Job Assurance (Permanent tenure - no arbitrary termination)",
+    body: "Assist in airport access control, staff and passenger identity checks, hand baggage guidance, and boarding gate screening coordination.",
+    org: "All Naukri Airport Services",
+    state: "Delhi / Kolkata / Hyderabad",
+    airport: "Indira Gandhi Airport, NSCBI Kolkata & RGIA Hyderabad",
+    date: "Immediate Joining",
+    vacancies: "95 Openings",
+    qualification: "12th Pass or Any Graduate",
+    ageLimit: "18 to 32 Years",
+    gender: "Male & Female Both",
+    fee: "₹0 (Zero Charges / Free)",
+    contactNumber: "8929103286",
+    contactEmail: "hr@allnaukri.in",
+    badge: "Urgent Requirement",
+    benefits: [
+      "Salary ₹35,500 - ₹35,800 / Month + Shift allowance",
+      "Prestigious airport security team uniform and official badge",
+      "Complete medical insurance coverage through ESI scheme",
+      "Permanent job with lifetime employment guarantee",
+      "Opportunity for career elevation into senior airport security supervisory roles"
     ],
-    selectionProcess: ["Preliminary exam", "Main exam", "Interview", "Final merit list"],
+    responsibilities: [
+      "Verifying passenger identity credentials against boarding documents",
+      "Managing passenger queues at security screening metal detector arches",
+      "Assisting travelers with tray arrangement for laptop and liquid checks",
+      "Monitoring terminal access doors and maintaining visitor logs"
+    ],
+    importantDates: [
+      "Application Window: Open Now",
+      "Background Verification: BCAS compliance check",
+      "Interview Slot: Mon - Sat 10:00 AM to 5:00 PM",
+      "Offer Letter: Given upon verification"
+    ],
+    selectionProcess: [
+      "Step 1: Submit your application on All Naukri portal",
+      "Step 2: Police Verification / Character Certificate submission",
+      "Step 3: Basic Height & Fitness verification (Standard civilian norms)",
+      "Step 4: Orientation on Airport Security & Passenger Protocol",
+      "Step 5: Signing of permanent appointment letter"
+    ],
     howToApply: [
-      "Go to the IBPS official website.",
-      "Open CRP PO/MT recruitment link.",
-      "Complete registration, form, upload and payment.",
-      "Download the final application printout."
+      "Complete the 2-minute online form on allnaukri.in.",
+      "Keep digital copy or photo of 12th certificate and Aadhaar ready.",
+      "Call HR Helpline 8929103286 for priority telephonic schedule.",
+      "Receive formal joining letter directly via official email hr@allnaukri.in."
     ]
   },
   {
-    slug: "mp-patwari-2026-demo",
-    type: "State Job",
-    title: "MP Patwari Recruitment 2026",
-    body: "Demo Madhya Pradesh vacancy update for patwari and revenue department posts.",
-    org: "Madhya Pradesh Employee Selection Board",
-    state: "Madhya Pradesh",
-    date: "18 Aug",
-    officialLink: "https://esb.mp.gov.in",
-    applyText: "Apply on MPESB official website",
-    vacancies: "6755 posts",
-    qualification: "Graduation with CPCT / computer knowledge as per notification.",
-    ageLimit: "18 to 40 years. Age relaxation as per Madhya Pradesh government rules.",
-    fee: "General: Rs. 500. Reserved category: Rs. 250.",
-    importantDates: [
-      "Application start: 12 July 2026",
-      "Last date to apply: 18 August 2026",
-      "Correction window: After form close",
-      "Exam date: To be notified"
+    slug: "airport-cargo-logistics-associate",
+    type: "Cargo & Logistics",
+    category: "cargo",
+    title: "Air Cargo Operations Associate & Parcel Documentation Clerk",
+    salary: "₹35,000 - ₹35,800 / Month",
+    security: "Lifetime Job Assurance (Permanent tenure - no arbitrary termination)",
+    body: "Manage freight packaging, barcode scanning, airway bill documentation, and cargo storage at major international air cargo logistics terminals.",
+    org: "All Naukri Airport Services",
+    state: "Ahmedabad / Chennai / Pan-India",
+    airport: "Air Cargo Complex - Chennai, Ahmedabad & Mumbai",
+    date: "Immediate Joining",
+    vacancies: "75 Openings",
+    qualification: "10th, 12th or ITI / Diploma in any field",
+    ageLimit: "18 to 35 Years",
+    gender: "Male & Female Both",
+    fee: "₹0 (100% Free Registration)",
+    contactNumber: "8929103286",
+    contactEmail: "hr@allnaukri.in",
+    badge: "Stable Shifts",
+    benefits: [
+      "Monthly Compensation ₹35,000 to ₹35,800 + Attendance Incentive",
+      "Fixed 8-hour shift rotational duties with weekly off",
+      "Company transport and meal vouchers included",
+      "Full PF, ESI, gratuity and lifetime job security assurance",
+      "Zero registration charges or agency fees"
     ],
-    selectionProcess: ["Written exam", "Document verification", "Final merit list"],
+    responsibilities: [
+      "Weighing and barcode scanning of air freight consignments",
+      "Checking cargo documentation, airway bills, and shipping manifests",
+      "Supervising pallet loading into cargo containers (ULDs)",
+      "Reporting any damaged parcels or mismatched consignments promptly"
+    ],
+    importantDates: [
+      "Enrolment: Immediate",
+      "Document Check: Same day online verification",
+      "Induction: 2 Days practical air-cargo training",
+      "Deployment: Immediate"
+    ],
+    selectionProcess: [
+      "Step 1: Online profile submission on allnaukri.in",
+      "Step 2: Review of educational documents and address proof",
+      "Step 3: HR telephonic interview round",
+      "Step 4: Cargo terminal pass authorization",
+      "Step 5: Permanent appointment dispatch"
+    ],
     howToApply: [
-      "Open the MPESB official website.",
-      "Select the patwari recruitment application link.",
-      "Fill candidate details and upload documents.",
-      "Submit fee and download the final form."
+      "Click 'Apply Online' on this page.",
+      "Select 'Air Cargo Operations' as your preferred role.",
+      "Submit candidate details or WhatsApp at 8929103286.",
+      "Get immediate joining confirmation."
     ]
   },
   {
-    slug: "haryana-police-constable-2026-demo",
-    type: "Police Job",
-    title: "Haryana Police Constable Recruitment 2026",
-    body: "Demo Haryana police job update for constable posts.",
-    org: "Haryana Staff Selection Commission",
-    state: "Haryana",
-    date: "28 Aug",
-    officialLink: "https://hssc.gov.in",
-    applyText: "Apply on HSSC official website",
-    vacancies: "6000 posts",
-    qualification: "Class 12th passed with Hindi or Sanskrit subject as per rules.",
-    ageLimit: "18 to 25 years. Age relaxation as per Haryana government rules.",
-    fee: "Fee details as per official notification.",
-    importantDates: [
-      "Application start: 20 July 2026",
-      "Last date to apply: 28 August 2026",
-      "Physical test: To be notified",
-      "Exam date: To be notified"
+    slug: "airport-vip-lounge-hospitality-executive",
+    type: "Lounge & VIP Services",
+    category: "lounge",
+    title: "Airport VIP Lounge Assistant & Passenger Hospitality Executive",
+    salary: "₹35,400 - ₹35,800 / Month",
+    security: "Lifetime Job Assurance (Permanent tenure - no arbitrary termination)",
+    body: "Deliver world-class hospitality, welcome premium business/first class travelers, assist with buffet counters, and manage executive airport lounge reception.",
+    org: "All Naukri Airport Services",
+    state: "Delhi / Mumbai / Bangalore",
+    airport: "International & Domestic Executive Departure Lounges",
+    date: "Immediate Joining",
+    vacancies: "50 Openings",
+    qualification: "12th Pass or Graduate (Hotel Management/Hospitality preferred, Freshers welcome)",
+    ageLimit: "18 to 30 Years",
+    gender: "Male & Female Both",
+    fee: "₹0 (100% Free Application)",
+    contactNumber: "8929103286",
+    contactEmail: "hr@allnaukri.in",
+    badge: "Premium Environment",
+    benefits: [
+      "Salary ₹35,400 - ₹35,800 / Month + High Guest Tips & Service Incentives",
+      "Work in luxury air-conditioned executive airport lounges",
+      "Complimentary five-star quality gourmet meals on duty",
+      "Lifetime employment security with guaranteed career progression",
+      "Direct pick and drop taxi service"
     ],
-    selectionProcess: ["CET score shortlisting", "Physical test", "Written exam", "Document verification"],
+    responsibilities: [
+      "Greeting international guests with warm hospitality at lounge reception",
+      "Assisting guests with boarding announcements and flight status queries",
+      "Managing dining setup, beverage service, and seating comfort",
+      "Maintaining immaculate hygiene and luxury presentation standards"
+    ],
+    importantDates: [
+      "Application Status: Live",
+      "Grooming & Interaction Round: Online / Walk-in",
+      "Medical Clearance: Basic health check",
+      "Joining: Immediate on selection"
+    ],
+    selectionProcess: [
+      "Step 1: Submit profile on allnaukri.in with photo",
+      "Step 2: Interaction with Lounge Operations Manager",
+      "Step 3: Background verification and medical fitness check",
+      "Step 4: Hospitality grooming and airport pass induction",
+      "Step 5: Permanent placement at executive departure lounge"
+    ],
     howToApply: [
-      "Visit the HSSC official website.",
-      "Open Haryana Police Constable recruitment link.",
-      "Complete form, document upload and fee step.",
-      "Save the submitted application printout."
+      "Apply through the online portal or WhatsApp resume to 8929103286.",
+      "Mention 'VIP Lounge Executive' as your role preference.",
+      "Attend the quick online HR discussion.",
+      "Receive joining letter from hr@allnaukri.in."
     ]
   },
   {
-    slug: "rajasthan-junior-assistant-2026-demo",
-    type: "State Job",
-    title: "Rajasthan Junior Assistant Recruitment 2026",
-    body: "Demo Rajasthan government vacancy update for junior assistant posts.",
-    org: "Rajasthan Staff Selection Board",
-    state: "Rajasthan",
-    date: "10 Sep",
-    officialLink: "https://rssb.rajasthan.gov.in",
-    applyText: "Apply on RSSB official website",
-    vacancies: "3552 posts",
-    qualification: "Class 12th passed with computer qualification as per notification.",
-    ageLimit: "18 to 40 years. Age relaxation as per Rajasthan government rules.",
-    fee: "General/OBC: Rs. 600. Reserved category: Rs. 400.",
-    importantDates: [
-      "Application start: 05 August 2026",
-      "Last date to apply: 10 September 2026",
-      "Admit card: Before exam",
-      "Exam date: To be notified"
+    slug: "airport-tarmac-bus-driver-equipment-operator",
+    type: "Ground Fleet & Transport",
+    category: "ramp-baggage",
+    title: "Airport Tarmac Passenger Bus Driver & Ramp Equipment Operator",
+    salary: "₹35,000 - ₹35,800 / Month",
+    security: "Lifetime Job Assurance (Permanent tenure - no arbitrary termination)",
+    body: "Drive low-floor airport apron buses transporting travelers between boarding gates and aircraft stands, and operate pushback/luggage tractors.",
+    org: "All Naukri Airport Services",
+    state: "Delhi / Jaipur / Lucknow",
+    airport: "Airside Apron Area - IGI Delhi, Jaipur & Lucknow Airports",
+    date: "Immediate Joining",
+    vacancies: "60 Openings",
+    qualification: "10th Pass + Valid Commercial / Heavy Driving License (LMV / HMV)",
+    ageLimit: "21 to 40 Years",
+    gender: "Male Candidates",
+    fee: "₹0 (100% Free Application)",
+    contactNumber: "8929103286",
+    contactEmail: "hr@allnaukri.in",
+    badge: "Driving License Required",
+    benefits: [
+      "Starting Salary ₹35,000 - ₹35,800 + Safe Driving Bonus",
+      "Provident fund, ESI medical card, and life insurance coverage",
+      "Free airport duty meals and tea/coffee lounge access",
+      "Lifetime job security - permanent appointment",
+      "Zero registration or brokerage fees"
     ],
-    selectionProcess: ["Written exam", "Typing test", "Document verification"],
+    responsibilities: [
+      "Operating airfield passenger transit buses with maximum passenger safety",
+      "Following airside speed limits and runway crossing signals strictly",
+      "Assisting ground crew with luggage tractor and ramp equipment parking",
+      "Performing daily vehicle inspection and reporting maintenance needs"
+    ],
+    importantDates: [
+      "Application Window: Open Now",
+      "Airside Driving Test: Conducted at airport tarmac tracks",
+      "Medical & Eye Test: 6/6 vision standard",
+      "Joining: Within 3 days of pass issue"
+    ],
+    selectionProcess: [
+      "Step 1: Register on allnaukri.in with driving license details",
+      "Step 2: License authenticity check & document review",
+      "Step 3: Driving test and airside safety orientation",
+      "Step 4: Police clearance and Airport Entry Permit",
+      "Step 5: Permanent appointment letter issuance"
+    ],
     howToApply: [
-      "Open the RSSB official website.",
-      "Login with SSO and select recruitment form.",
-      "Fill details and upload required documents.",
-      "Submit fee and download confirmation page."
+      "Submit application on allnaukri.in or call 8929103286.",
+      "Provide driving license number and Aadhaar card.",
+      "Schedule your trial driving slot with HR team.",
+      "Receive appointment letter directly."
     ]
   },
   {
-    slug: "up-lekhpal-2026-demo",
-    type: "State Job",
-    title: "UP Lekhpal Recruitment 2026",
-    body: "Demo Uttar Pradesh vacancy update for lekhpal posts.",
-    org: "Uttar Pradesh Subordinate Services Selection Commission",
-    state: "UP",
-    date: "25 Sep",
-    officialLink: "https://upsssc.gov.in",
-    applyText: "Apply on UPSSSC official website",
-    vacancies: "8085 posts",
-    qualification: "Class 12th passed with valid PET score as per notification.",
-    ageLimit: "18 to 40 years. Age relaxation as per Uttar Pradesh government rules.",
-    fee: "Application fee as per UPSSSC official notification.",
-    importantDates: [
-      "Application start: 25 August 2026",
-      "Last date to apply: 25 September 2026",
-      "Correction window: After form close",
-      "Exam date: To be notified"
+    slug: "airport-aircraft-cabin-cleaning-turnaround-crew",
+    type: "Aircraft Turnaround & Upkeep",
+    category: "ground-staff",
+    title: "Aircraft Cabin Cleaning & Quick Turnaround Assistant",
+    salary: "₹35,000 - ₹35,400 / Month",
+    security: "Lifetime Job Assurance (Permanent tenure - no arbitrary termination)",
+    body: "Perform aircraft interior cabin sanitization, seat pocket restocking, waste clearance, and passenger comfort item arrangement between flight landings.",
+    org: "All Naukri Airport Services",
+    state: "Goa / Mumbai / Delhi",
+    airport: "Manohar International Airport Goa, CSMIA Mumbai, IGI Delhi",
+    date: "Immediate Joining",
+    vacancies: "110 Openings",
+    qualification: "8th, 10th or 12th Pass (Freshers Welcome)",
+    ageLimit: "18 to 36 Years",
+    gender: "Male & Female Both",
+    fee: "₹0 (100% Free Placement)",
+    contactNumber: "8929103286",
+    contactEmail: "hr@allnaukri.in",
+    badge: "Direct Joining",
+    benefits: [
+      "Monthly Salary ₹35,000 to ₹35,400 + Shift Allowances",
+      "Full protective PPE kit, gloves, masks, and uniform provided",
+      "Permanent employment status with lifetime job assurance",
+      "Medical insurance for self and family under ESI",
+      "100% Free recruitment with zero hidden charges"
     ],
-    selectionProcess: ["PET based shortlisting", "Main exam", "Document verification"],
+    responsibilities: [
+      "Vacuuming passenger aisles and wiping tray tables during aircraft turnarounds",
+      "Restocking in-flight safety cards, magazines, and fresh headrest covers",
+      "Sanitizing aircraft lavatories and galleys under DGCA aviation hygiene standards",
+      "Assisting cabin crew in preparing the aircraft for passenger re-boarding"
+    ],
+    importantDates: [
+      "Application Window: Open Now",
+      "Batch Selection: Every Tuesday & Friday",
+      "Pass Formalities: 24 to 48 Hours",
+      "Deployment: Immediate"
+    ],
+    selectionProcess: [
+      "Step 1: Submit free application on allnaukri.in",
+      "Step 2: Identity & basic health verification",
+      "Step 3: Short telephonic interview with HR coordinator",
+      "Step 4: Airport security verification pass processing",
+      "Step 5: Immediate duty commencement with lifetime job security"
+    ],
     howToApply: [
-      "Go to the UPSSSC official website.",
-      "Open lekhpal recruitment application link.",
-      "Fill form with PET registration details.",
-      "Submit application and download final printout."
+      "Fill the online application on allnaukri.in.",
+      "Alternatively, connect with HR on phone/WhatsApp at 8929103286.",
+      "Report to the assigned airport terminal office.",
+      "Start your aviation career with guaranteed lifetime job stability."
     ]
   }
 ];
 
-export function getJobBySlug(slug: string) {
+export function getJobBySlug(slug: string): AirportJob | undefined {
   return jobs.find((job) => job.slug === slug);
 }

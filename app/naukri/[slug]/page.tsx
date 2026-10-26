@@ -1,19 +1,24 @@
 import {
   ArrowLeft,
   BriefcaseBusiness,
+  Building2,
   CalendarDays,
   CheckCircle2,
   ClipboardList,
   ExternalLink,
+  FileCheck,
   FileText,
+  Headphones,
   MapPin,
-  ShieldCheck
+  Phone,
+  Plane,
+  Send,
+  ShieldCheck,
+  Sparkles
 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getJobBySlug, jobs } from "../../jobs";
-
-type Job = (typeof jobs)[number];
 
 export function generateStaticParams() {
   return jobs.map((job) => ({
@@ -27,21 +32,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!job) {
     return {
-      title: "Naukri Not Found"
+      title: "Airport Opening Not Found"
     };
   }
 
   return {
-    title: `${job.title} | All Sarkari Naukri`,
-    description: `${job.body} Check vacancy, eligibility, last date and official apply link on All Naukri.`,
+    title: `${job.title} - Salary ${job.salary} | All Naukri`,
+    description: `${job.body} Apply for ${job.title} at ${job.airport}. Lifetime Job Security, 100% Free Application, Salary ₹35,000 - ₹35,800/mo.`,
     keywords: [
       job.title,
       job.type,
-      job.state,
+      job.airport,
+      "Airport Ground Staff",
       "All Naukri",
-      "All Jobs",
-      "All Sarkari Naukri",
-      "Government Jobs"
+      "Airport Jobs India"
     ],
     alternates: {
       canonical: `/naukri/${job.slug}`
@@ -61,57 +65,99 @@ export default async function NaukriDetailPage({
     notFound();
   }
 
-  const details = buildDetails(job);
   const overviewRows = [
-    ["Post Name", job.title],
-    ["Department", job.org],
-    ["State", job.state],
-    ["Total Vacancy", job.vacancies],
-    ["Last Date", job.date]
-  ];
-  const eligibilityRows = [
-    ["Qualification", job.qualification],
-    ["Age Limit", job.ageLimit],
+    ["Designation", job.title],
+    ["Airport Department", job.type],
+    ["Starting Salary", job.salary],
+    ["Job Tenure", job.security],
     ["Application Fee", job.fee],
-    ["Selection", job.selectionProcess.join(", ")]
+    ["Airport Station", job.airport],
+    ["Total Vacancy", job.vacancies],
+    ["Educational Eligibility", job.qualification],
+    ["Age Eligibility", job.ageLimit],
+    ["Gender Eligibility", job.gender],
+    ["Joining Mode", job.date]
   ];
+
+  const whatsappMessage = encodeURIComponent(
+    `Hello HR Team (All Naukri),\nI am interested in applying for: *${job.title}*\nSalary: ${job.salary}\nAirport: ${job.airport}\nPlease share joining details.`
+  );
 
   return (
     <main className="vlogPage">
       <article className="container vlogShell">
+        {/* Detail Hero Header */}
         <header className="vlogHero softPanel">
-          <span className="chip">{job.type} Details</span>
-          <h1>{job.title} ka complete update</h1>
-          <p>{details.intro}</p>
+          <div className="detailTopMeta">
+            <span className="chip primaryChip">✈️ {job.type}</span>
+            <span className="salaryPillLarge">{job.salary}</span>
+            <span className="securityPillLarge">
+              <ShieldCheck size={15} />
+              Lifetime Job Guarantee
+            </span>
+            <span className="freePillLarge">100% Free Application</span>
+          </div>
+
+          <h1>{job.title}</h1>
+          <p className="detailIntro">{job.body}</p>
+
           <div className="detailMeta">
-            <span>{job.org}</span>
+            <span>
+              <Building2 size={15} />
+              {job.org}
+            </span>
             <span>
               <MapPin size={15} />
-              {job.state}
+              {job.airport}
             </span>
             <span>
               <CalendarDays size={15} />
-              Last date: {job.date}
+              Status: {job.date}
             </span>
+          </div>
+
+          <div className="detailHeroActions">
+            <Link href="/apply" className="btnPrimary btnLarge btnGlow">
+              <Send size={18} />
+              <span>Apply Online Now (Free)</span>
+            </Link>
+
+            <a href="tel:8929103286" className="btnSecondary btnLarge">
+              <Phone size={18} />
+              <span>Call HR: +91 8929103286</span>
+            </a>
+
+            <a
+              href={`https://wa.me/918929103286?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noreferrer"
+              className="btnWhatsapp btnLarge"
+            >
+              <span>WhatsApp HR</span>
+            </a>
           </div>
         </header>
 
+        {/* Content Section */}
         <section className="vlogContent softPanel">
           <div className="vlogLead">
             <span className="iconBubble">
-              <BriefcaseBusiness size={19} />
+              <Plane size={22} />
             </span>
             <div>
-              <h2>Latest All Sarkari Naukri</h2>
-              <p>Is vacancy update ko short, clear aur student-friendly format me samjhaya gaya hai.</p>
+              <h2>Airport Employment Overview & Key Highlights</h2>
+              <p>
+                Permanent placement with on-time salary, statutory benefits, and verified airport duty environment.
+              </p>
             </div>
           </div>
 
-          <section className="yojnaArticleGrid" aria-label="Job overview">
+          {/* Quick Specifications Table */}
+          <section className="yojnaArticleGrid" aria-label="Job specifications">
             <div className="yojnaTableCard">
               <div className="yojnaMiniHead">
                 <ClipboardList size={18} />
-                <h3>Quick Overview</h3>
+                <h3>Official Job Specifications</h3>
               </div>
               <div className="yojnaTableWrap">
                 <table className="yojnaTable">
@@ -130,153 +176,110 @@ export default async function NaukriDetailPage({
             <div className="yojnaTableCard yojnaHighlightCard">
               <div className="yojnaMiniHead">
                 <ShieldCheck size={18} />
-                <h3>Vacancy Check</h3>
+                <h3>Employment Security Assurance</h3>
               </div>
-              <p>{job.body} Apply karne se pehle eligibility, fee aur official dates zaroor verify karein.</p>
+              <p>
+                <strong>Lifetime Job Security:</strong> Your role is permanent. There are no sudden
+                layoffs or arbitrary contract terminations. You remain employed unless you submit voluntary resignation.
+              </p>
               <div className="yojnaBadgeList">
                 <span>{job.type}</span>
-                <span>{job.state}</span>
                 <span>{job.vacancies}</span>
+                <span>{job.salary}</span>
+                <span>100% Free Process</span>
               </div>
             </div>
           </section>
 
-          {details.sections.map((section) => (
-            <section className="vlogBlock" key={section.title}>
-              <h3>{section.title}</h3>
-              <p>{section.body}</p>
-            </section>
-          ))}
-
+          {/* Benefits List */}
           <section className="vlogBlock">
-            <h3>Important Dates</h3>
+            <h3>Employee Benefits & Perks</h3>
             <div className="yojnaPointGrid">
-              {job.importantDates.map((item) => (
-                <div className="yojnaPointCard" key={item}>
-                  <span>{item.split(":")[0]}</span>
-                  <p>{item}</p>
+              {job.benefits.map((benefit, i) => (
+                <div className="yojnaPointCard" key={i}>
+                  <CheckCircle2 size={18} className="textSuccess" />
+                  <p>{benefit}</p>
                 </div>
               ))}
             </div>
           </section>
 
+          {/* Key Responsibilities */}
           <section className="vlogBlock">
-            <h3>Selection Process</h3>
+            <h3>Key Duties & Responsibilities</h3>
+            <div className="yojnaPointGrid">
+              {job.responsibilities.map((resp, i) => (
+                <div className="yojnaPointCard" key={i}>
+                  <span>{i + 1}</span>
+                  <p>{resp}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Selection Process */}
+          <section className="vlogBlock">
+            <h3>Selection & Joining Roadmap</h3>
             <div className="yojnaStepGrid">
-              {job.selectionProcess.map((item, index) => (
-                <div className="yojnaStepCard" key={item}>
+              {job.selectionProcess.map((step, index) => (
+                <div className="yojnaStepCard" key={index}>
                   <strong>{index + 1}</strong>
-                  <p>{item}</p>
+                  <p>{step}</p>
                 </div>
               ))}
             </div>
           </section>
 
+          {/* How to Apply */}
           <section className="vlogBlock">
-            <h3>Eligibility Table</h3>
-            <div className="yojnaTableWrap">
-              <table className="yojnaTable">
-                <thead>
-                  <tr>
-                    <th scope="col">Field</th>
-                    <th scope="col">Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {eligibilityRows.map(([label, value]) => (
-                    <tr key={label}>
-                      <th scope="row">{label}</th>
-                      <td>{value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section className="vlogBlock">
-            <h3>How to Apply</h3>
+            <h3>How to Apply Step-by-Step</h3>
             <div className="yojnaStepGrid">
               {job.howToApply.map((item, index) => (
-                <div className="yojnaStepCard" key={item}>
-                  <strong>{index + 1}</strong>
+                <div className="yojnaStepCard" key={index}>
+                  <strong>Step {index + 1}</strong>
                   <p>{item}</p>
                 </div>
               ))}
             </div>
           </section>
 
+          {/* Important Notice */}
           <section className="vlogBlock">
-            <h3>Apply Karne Se Pehle</h3>
+            <h3>Zero-Fee & Anti-Fraud Notice</h3>
             <div className="yojnaNote">
-              <p>Official notification, eligibility, age limit, fee aur dates carefully verify karein.</p>
-              <p>Name, date of birth, category, photo, signature aur documents submit se pehle match karein.</p>
-              <p>Application submit hone ke baad registration number aur final printout save rakhein.</p>
+              <p>
+                <strong>Never Pay Anyone:</strong> All Naukri does NOT charge any fee for application,
+                interviews, uniform, medical clearance, or airport gate pass.
+              </p>
+              <p>
+                If anyone demands money in the name of All Naukri or airport recruitment, immediately
+                report it to our HR desk at <strong>8929103286</strong> or <strong>hr@allnaukri.in</strong>.
+              </p>
             </div>
           </section>
         </section>
 
-        <aside className="vlogSummary softPanel" aria-label="Quick summary">
-          <div>
-            <FileText size={21} />
-            <span>Total Vacancy</span>
-            <strong>{job.vacancies}</strong>
-          </div>
-          <div>
-            <CheckCircle2 size={21} />
-            <span>Qualification</span>
-            <strong>{job.qualification}</strong>
-          </div>
-          <div>
-            <ShieldCheck size={21} />
-            <span>Application Fee</span>
-            <strong>{job.fee}</strong>
-          </div>
-        </aside>
-
+        {/* Footer Card */}
         <footer className="vlogOfficial softPanel">
           <div>
-            <span className="chip">Official Link</span>
-            <h2>Apply sirf official website se karein</h2>
+            <span className="chip primaryChip">Official HR Desk</span>
+            <h2>Apply Directly or Call for Immediate Verification</h2>
             <p>
-              Form bharne se pehle notification, eligibility, fee aur dates official website par
-              verify kar lein.
+              Helpline: <strong>+91 8929103286</strong> | Email: <strong>hr@allnaukri.in</strong>
             </p>
           </div>
-          <a href={job.officialLink} rel="noreferrer" target="_blank">
-            {job.applyText}
-            <ExternalLink size={16} />
-          </a>
-          <Link href="/">
-            <ArrowLeft size={16} />
-            Back to Home
-          </Link>
+          <div className="vlogActionButtons">
+            <Link href="/apply" className="btnPrimary btnLarge btnGlow">
+              <span>Apply Online (Free)</span>
+              <Send size={16} />
+            </Link>
+            <Link href="/sarkari-naukri" className="btnOutline">
+              <ArrowLeft size={16} />
+              <span>Back to Openings</span>
+            </Link>
+          </div>
         </footer>
       </article>
     </main>
   );
-}
-
-function buildDetails(job: Job) {
-  return {
-    intro: `Namaskar dosto, aaj hum baat kar rahe hain ${job.title} ke baare me. ${job.org} ki taraf se ye update aaya hai, aur isme ${job.vacancies} ke liye candidates ko chance mil raha hai.`,
-    sections: [
-      {
-        title: "Aaj Ki Main Update",
-        body: `${job.body} Agar aap ${job.type.toLowerCase()} ki taiyari kar rahe hain, to ye update aapke liye important ho sakta hai. Is page me vacancy, qualification, age limit, fee, dates aur apply process simple language me diya gaya hai.`
-      },
-      {
-        title: "Kaun Apply Kar Sakta Hai",
-        body: `Is vacancy ke liye qualification hai: ${job.qualification} Age limit: ${job.ageLimit} Apply karne se pehle apni category, age relaxation aur document details official notification se match kar lena zaroori hai.`
-      },
-      {
-        title: "Fee Aur Form Bharne Se Pehle",
-        body: `Application fee detail: ${job.fee} Form submit karne se pehle name, date of birth, category, photo, signature aur document upload clearly check kar lein, kyunki galat detail se form reject ho sakta hai.`
-      },
-      {
-        title: "Final Advice",
-        body: `Last date ${job.date} di gayi hai. End moment ka wait mat karein, kyunki website slow ya payment issue aa sakta hai. Pehle official notification padhein, phir hi application submit karein.`
-      }
-    ]
-  };
 }
