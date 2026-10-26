@@ -2662,6 +2662,7 @@ html[data-theme="dark"] .blogCard {
   }
 }
 
+
 /* ==========================================================
    AVIATION & AIRPORT GROUND STAFF CAREERS THEME EXTENSIONS
    ========================================================== */
@@ -2882,23 +2883,23 @@ html[data-theme="dark"] .btnSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 11px 20px;
+  gap: 7px;
+  padding: 11px 18px;
   border-radius: 10px;
   background: #25d366;
   color: #ffffff !important;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.32);
   text-align: center;
 }
 
 .btnWhatsapp:hover {
   background: #1ebc59;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.42);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
 }
 
 .btnOutline {
@@ -2922,14 +2923,14 @@ html[data-theme="dark"] .btnSecondary {
 }
 
 .btnLarge {
-  padding: 14px 26px;
-  font-size: 15px;
-  border-radius: 12px;
+  padding: 13px 24px;
+  font-size: 14px;
+  border-radius: 11px;
 }
 
 .btnSmall {
-  padding: 7px 14px;
-  font-size: 13px;
+  padding: 8px 13px;
+  font-size: 12px;
   border-radius: 8px;
 }
 
@@ -3226,7 +3227,7 @@ html[data-theme="dark"] .pillarCard {
 }
 
 .sectionHeader {
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .sectionHeader.textCenter {
@@ -3240,7 +3241,7 @@ html[data-theme="dark"] .pillarCard {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.8px;
   color: #0284c7;
@@ -3313,7 +3314,7 @@ html[data-theme="dark"] .categoryTabBtn {
 }
 
 /* ==========================================================
-   AIRPORT JOBS GRID
+   HORIZONTAL SCROLLING JOBS RAIL ("left to right ghoomna chahiye")
    ========================================================== */
 .openingsSection {
   margin-bottom: 48px;
@@ -3323,185 +3324,212 @@ html[data-theme="dark"] .categoryTabBtn {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  gap: 16px;
 }
 
-.sectionTopInfo h3 {
-  font-size: 20px;
-  font-weight: 800;
-  margin: 0 0 4px;
+.railControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.sectionTopInfo p {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 0;
-}
-
-.airportJobsGrid {
+.railArrowBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-  gap: 20px;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
 }
 
-.airportJobCard {
+.railArrowBtn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  transform: scale(1.05);
+}
+
+.horizontalJobsRail {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 4px 20px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(2, 132, 199, 0.3) transparent;
+}
+
+.horizontalJobsRail::-webkit-scrollbar {
+  height: 6px;
+}
+
+.horizontalJobsRail::-webkit-scrollbar-thumb {
+  background: rgba(2, 132, 199, 0.35);
+  border-radius: 999px;
+}
+
+.airportJobRailCard {
+  flex: 0 0 340px;
+  scroll-snap-align: start;
   border-radius: 16px;
-  padding: 22px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(2, 132, 199, 0.18);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid rgba(2, 132, 199, 0.16);
+  background: var(--panel);
 }
 
-.airportJobCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 36px rgba(2, 132, 199, 0.12);
+.airportJobRailCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(2, 132, 199, 0.14);
 }
 
-.cardTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 12px;
+.cardThumbWrapper {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
 }
 
-.typeBadgeWrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+.cardThumbImg {
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.primaryChip {
-  background: rgba(2, 132, 199, 0.12);
-  color: #0284c7;
-  border: 1px solid rgba(2, 132, 199, 0.24);
-  font-weight: 700;
-  font-size: 11px;
+.airportJobRailCard:hover .cardThumbImg {
+  transform: scale(1.05);
 }
 
-.highlightChip {
-  background: rgba(245, 158, 11, 0.15);
-  color: #d97706;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  font-weight: 700;
-  font-size: 11px;
+.cardThumbOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 18, 30, 0.1) 0%, rgba(6, 18, 30, 0.75) 100%);
 }
 
-.liveJoiningPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+.thumbTypeChip {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(2, 132, 199, 0.85);
+  color: #ffffff;
   font-size: 11px;
   font-weight: 700;
-  color: #10b981;
+  backdrop-filter: blur(6px);
 }
 
-.greenDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10b981;
-  animation: pulseDot 2s infinite;
-}
-
-.jobCardTitle {
-  font-size: 17px;
-  font-weight: 800;
-  line-height: 1.3;
-  margin: 0 0 10px;
-}
-
-.jobCardTitle a:hover {
-  color: #0284c7;
-}
-
-.jobCardDesc {
+.thumbSalaryChip {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  z-index: 2;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(9, 26, 45, 0.85);
+  color: #fbbf24;
   font-size: 13px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin: 0 0 16px;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.cardRailBody {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }
 
-.jobKeySpecs {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  background: rgba(2, 132, 199, 0.05);
-  margin-bottom: 16px;
-  border: 1px solid rgba(2, 132, 199, 0.1);
-  font-size: 12px;
-}
-
-.specRow {
+.cardMetaTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  margin-bottom: 10px;
 }
 
-.specLabel {
+.tenureBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.freeBadge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.12);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.railCardTitle {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+
+.railCardTitle a:hover {
+  color: #0284c7;
+}
+
+.railCardDesc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0 0 14px;
+  flex-grow: 1;
+}
+
+.railCardSpecs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: rgba(2, 132, 199, 0.05);
+  border: 1px solid rgba(2, 132, 199, 0.1);
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.specMiniRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.specMiniRow span {
   color: var(--muted);
 }
 
-.specSalary {
-  font-size: 13px;
-  color: #0284c7;
-  font-weight: 800;
-}
-
-.textSuccess {
-  color: #10b981 !important;
-}
-
-.textHighlight {
-  color: #0284c7 !important;
-}
-
-.textFree {
-  color: #10b981;
-  font-weight: 700;
-}
-
-.inlineIcon {
-  display: inline;
-  vertical-align: -2px;
-  margin-right: 3px;
-}
-
-.jobCardActions {
+.railCardButtons {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.secondaryActionRow {
+.splitBtnRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-}
-
-.btnCallQuick {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 9px 12px;
-  border-radius: 8px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  color: #10b981;
-  font-size: 13px;
-  font-weight: 700;
-  transition: all 0.15s ease;
-}
-
-.btnCallQuick:hover {
-  background: #10b981;
-  color: #ffffff;
 }
 
 /* ==========================================================
@@ -3901,24 +3929,38 @@ html[data-theme="dark"] .categoryTabBtn {
 }
 
 /* ==========================================================
-   TESTIMONIALS & FAQ
+   HORIZONTAL SCROLLING TESTIMONIALS & REVIEWS
    ========================================================== */
-.testimonialsSection,
-.faqSection {
+.testimonialsSection {
   margin-bottom: 48px;
 }
 
-.testimonialsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.testimonialScrollControls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 14px;
 }
 
-.testimonialCard {
+.horizontalTestimonialsRail {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 4px 18px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.testimonialCardRailItem {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
   border-radius: 16px;
-  padding: 24px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--line);
+  background: var(--panel);
 }
 
 .stars {
@@ -3932,7 +3974,7 @@ html[data-theme="dark"] .categoryTabBtn {
   font-size: 13px;
   line-height: 1.7;
   color: var(--muted);
-  margin: 0 0 18px;
+  margin: 0 0 16px;
   flex-grow: 1;
   font-style: italic;
 }
@@ -3967,27 +4009,82 @@ html[data-theme="dark"] .categoryTabBtn {
   color: var(--muted);
 }
 
-.faqGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+/* ==========================================================
+   DROPDOWN ACCORDION FAQS ("dropdown karke upar hide ho jaye")
+   ========================================================== */
+.faqSection {
+  margin-bottom: 48px;
 }
 
-.faqCard {
+.faqAccordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.faqAccordionItem {
   border-radius: 14px;
-  padding: 22px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  transition: all 0.2s ease;
 }
 
-.faqCard h4 {
+.faqAccordionItem.open {
+  border-color: #0284c7;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.08);
+}
+
+.faqQuestionBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 22px;
+  background: transparent;
+  text-align: left;
+  border: 0;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.faqQuestionText {
   font-size: 15px;
   font-weight: 800;
-  margin: 0 0 8px;
+  line-height: 1.35;
+}
+
+.faqAccordionItem.open .faqQuestionText {
   color: #0284c7;
 }
 
-.faqCard p {
+.faqChevron {
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.faqAccordionItem.open .faqChevron {
+  transform: rotate(180deg);
+  color: #0284c7;
+}
+
+.faqAnswerPanel {
+  padding: 0 22px 20px;
+  animation: faqFadeIn 0.25s ease;
+}
+
+@keyframes faqFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.faqAnswerPanel p {
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--muted);
   margin: 0;
 }
@@ -4045,8 +4142,449 @@ html[data-theme="dark"] .categoryTabBtn {
 }
 
 /* ==========================================================
-   QUICK APPLY MODAL
+   MODERN MOBILE DRAWER MENU (Fixing Screenshot 1 CSS Issue)
    ========================================================== */
+.modernMobilePanel {
+  background: rgba(9, 26, 45, 0.98) !important;
+  color: #f8fafc !important;
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.modernMobilePanel .mobileMenuBrand strong {
+  color: #ffffff;
+}
+
+.modernMobilePanel .mobileMenuClose {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Cleanly styled salary card in drawer without text wrapping */
+.mobileSalaryCard {
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mobSalRow1 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #fbbf24;
+}
+
+.mobSalRow2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mobBadgeGreen {
+  font-size: 11px;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.mobBadgeBlue {
+  font-size: 11px;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+/* Refined mobile drawer links - NO RAW CYAN! */
+.modernMobileLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.mobNavLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.mobNavLink:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.mobNavLink.active {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.3) 0%, rgba(3, 105, 161, 0.4) 100%);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #38bdf8;
+}
+
+.mobNavIcon {
+  flex-shrink: 0;
+}
+
+.modernMobileFoot {
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modernMobileFoot .mobileContactInfo {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* ==========================================================
+   FLOATING CORNER ACTION BUTTONS (Fixing Screenshot 3)
+   ========================================================== */
+.floatingActionCorner {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.floatingFab {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #ffffff;
+}
+
+.floatingFab:hover {
+  transform: scale(1.08);
+}
+
+.fabWhatsapp {
+  background: #25d366;
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.5);
+  animation: pulseFab 2.2s infinite;
+}
+
+@keyframes pulseFab {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+.fabCall {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+}
+
+.fabTooltip {
+  position: absolute;
+  right: 62px;
+  background: #091a2d;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floatingFab:hover .fabTooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==========================================================
+   CARD-BASED FOOTER (Fixing Screenshot 2 CSS Issue)
+   ========================================================== */
+.footerContainer {
+  padding: 44px 0 28px;
+}
+
+.footerTopGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1.1fr 1fr 1.3fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.footerCardPanel {
+  border-radius: 16px;
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+
+.footerBrandCard {
+  border-color: rgba(2, 132, 199, 0.2);
+}
+
+.footerBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.footerBrand strong {
+  font-size: 18px;
+  display: block;
+}
+
+.footerBrand small {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.footerDesc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.footerGuarantees {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0284c7;
+}
+
+.guaranteeItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footerCardHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0284c7;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.footerCardHead h4 {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--ink);
+}
+
+.footerLinksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footerRoleLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--ink);
+  transition: background 0.15s ease;
+}
+
+.footerRoleLink:hover {
+  background: rgba(2, 132, 199, 0.08);
+  color: #0284c7;
+}
+
+.roleSalTag {
+  font-size: 10px;
+  font-weight: 700;
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.footerPolicyLink {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.footerPolicyLink:hover {
+  background: rgba(2, 132, 199, 0.06);
+  color: #0284c7;
+}
+
+.contactCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.contactItem svg {
+  color: #0284c7;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contactLabel {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.contactVal {
+  font-weight: 800;
+  color: #0284c7;
+  font-size: 13px;
+}
+
+.contactAddress {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.footerCardActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.footerCopyright {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ==========================================================
+   JOB DETAIL PAGE HERO WITH IMAGE
+   ========================================================== */
+.detailHeroCard {
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.detailHeroBannerWrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+}
+
+.detailHeroBannerImg {
+  object-fit: cover;
+}
+
+.detailHeroBannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 18, 30, 0.2) 0%, rgba(6, 18, 30, 0.85) 100%);
+}
+
+.detailBannerBadges {
+  position: absolute;
+  bottom: 16px;
+  left: 24px;
+  right: 24px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.detailHeroBody {
+  padding: 28px 24px;
+}
+
+.detailHeroBody h1 {
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 900;
+  margin: 0 0 10px;
+}
+
+.detailHeroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.highlightCardActions {
+  margin-top: 14px;
+}
+
+/* Directory Page Image Thumbnails */
+.rowImgThumb {
+  position: relative;
+  width: 100px;
+  height: 75px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.rowImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Quick Apply Modal Styles */
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -4201,7 +4739,6 @@ html[data-theme="dark"] .formGroup textarea {
   border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-/* Modal Success State */
 .modalSuccess {
   text-align: center;
   padding: 10px 0;
@@ -4298,830 +4835,7 @@ html[data-theme="dark"] .formGroup textarea {
 }
 
 /* ==========================================================
-   MOBILE STICKY QUICK ACTION BAR (specifically for phones!)
-   ========================================================= */
-.mobileStickyBar {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  background: rgba(9, 26, 45, 0.96);
-  backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(56, 189, 248, 0.25);
-  padding: 8px 12px;
-  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35);
-}
-
-.stickyAction {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 10px 8px;
-  border-radius: 9px;
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
-}
-
-.stickyAction.callAction {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.stickyAction.whatsappAction {
-  background: #25d366;
-  color: #ffffff;
-}
-
-.stickyAction.applyAction {
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4);
-}
-
-/* ==========================================================
-   DEDICATED APPLY PAGE STYLES
-   ========================================================== */
-.applyPage {
-  padding: 40px 0 60px;
-}
-
-.applyShell {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.applyHero {
-  border-radius: 20px;
-  padding: 34px;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.applyHeroLeft h1 {
-  font-size: clamp(24px, 3.4vw, 38px);
-  font-weight: 900;
-  margin: 10px 0;
-  letter-spacing: -0.5px;
-}
-
-.heroDesc {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin: 0 0 20px;
-}
-
-.applyHighlightsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.applyHighlightItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #0284c7;
-}
-
-.hrQuickDesk {
-  border-radius: 14px;
-  padding: 22px;
-  background: linear-gradient(135deg, #091a2d 0%, #0d2847 100%);
-  color: #ffffff;
-  border: 1px solid rgba(56, 189, 248, 0.25);
-}
-
-.hrQuickDesk h4 {
-  font-size: 15px;
-  font-weight: 800;
-  margin: 0 0 6px;
-  color: #38bdf8;
-}
-
-.hrQuickDesk p {
-  font-size: 12px;
-  color: #cbd5e1;
-  margin: 0 0 12px;
-}
-
-.deskPhone {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 20px;
-  font-weight: 900;
-  color: #fbbf24;
-  margin-bottom: 6px;
-}
-
-.deskEmail {
-  font-size: 13px;
-  color: #94a3b8;
-  margin-bottom: 4px;
-}
-
-.deskTiming {
-  font-size: 11px;
-  color: #64748b;
-  display: block;
-}
-
-.applyFormCard {
-  border-radius: 20px;
-  padding: 34px;
-}
-
-.formCardHeader {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--line);
-}
-
-.formCardHeader h2 {
-  font-size: 24px;
-  font-weight: 800;
-  margin: 0 0 6px;
-}
-
-.formCardHeader p {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 0;
-}
-
-.fullApplyForm {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.formSectionTitle {
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  color: #0284c7;
-  padding-bottom: 6px;
-  border-bottom: 1px dashed var(--line);
-}
-
-.formGridThree {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.formGridTwo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.formSecurityDeclaration {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px;
-  border-radius: 12px;
-  background: rgba(16, 185, 129, 0.1);
-  color: #065f46;
-  font-size: 12px;
-}
-
-html[data-theme="dark"] .formSecurityDeclaration {
-  color: #a7f3d0;
-}
-
-.formSubmitRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  padding-top: 10px;
-}
-
-/* Apply Success Card */
-.applySuccessCard {
-  border-radius: 20px;
-  padding: 44px;
-  text-align: center;
-}
-
-.successIconBubble {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(16, 185, 129, 0.15);
-  color: #10b981;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 20px;
-}
-
-.applySuccessCard h2 {
-  font-size: 28px;
-  font-weight: 900;
-  margin: 0 0 8px;
-}
-
-.successLead {
-  font-size: 15px;
-  color: var(--muted);
-  max-width: 600px;
-  margin: 0 auto 26px;
-}
-
-.trackingIdBox {
-  border-radius: 14px;
-  padding: 22px;
-  background: linear-gradient(135deg, #091a2d 0%, #0d2847 100%);
-  color: #ffffff;
-  display: inline-flex;
-  flex-direction: column;
-  margin-bottom: 28px;
-  min-width: 340px;
-}
-
-.trackingIdBox .lbl {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  color: #38bdf8;
-}
-
-.trackingIdBox .val {
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: #fbbf24;
-  margin: 4px 0;
-}
-
-.trackingIdBox .sub {
-  font-size: 11px;
-  color: #94a3b8;
-}
-
-.appSummaryTable {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  max-width: 760px;
-  margin: 0 auto 28px;
-  text-align: left;
-}
-
-.appSumItem {
-  padding: 14px;
-  border-radius: 10px;
-  background: var(--page);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 12px;
-}
-
-.appSumItem span {
-  color: var(--muted);
-}
-
-.successNextSteps {
-  max-width: 680px;
-  margin: 0 auto 30px;
-  text-align: left;
-  border-radius: 12px;
-  padding: 20px;
-  background: rgba(2, 132, 199, 0.08);
-  border: 1px solid rgba(2, 132, 199, 0.2);
-}
-
-.successNextSteps h3 {
-  font-size: 15px;
-  font-weight: 800;
-  margin: 0 0 10px;
-  color: #0284c7;
-}
-
-.successNextSteps ol {
-  margin: 0;
-  padding-left: 18px;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.successActionBtns {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-
-/* ==========================================================
-   ABOUT & CONTACT CUSTOM EXTENSIONS
-   ========================================================== */
-.aboutPillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 18px 0;
-}
-
-.aboutPillarCard {
-  padding: 20px;
-  border-radius: 12px;
-  background: var(--page);
-  border: 1px solid var(--line);
-}
-
-.aboutPillarCard h3 {
-  font-size: 15px;
-  font-weight: 800;
-  margin: 8px 0 6px;
-}
-
-.aboutPillarCard p {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.aboutRolesList {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 14px 0;
-}
-
-.airportsPillGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 16px 0;
-}
-
-.airportsPillGrid span {
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(2, 132, 199, 0.08);
-  border: 1px solid rgba(2, 132, 199, 0.2);
-  color: #0284c7;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.aboutContactBox {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 16px;
-  border-radius: 12px;
-  background: rgba(2, 132, 199, 0.06);
-  border: 1px solid rgba(2, 132, 199, 0.16);
-  font-size: 13px;
-  margin: 16px 0;
-}
-
-.aboutCtaRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 24px;
-}
-
-/* Contact Page Grid */
-.contactPageGrid {
-  display: grid;
-  grid-template-columns: 1.1fr 1.3fr;
-  gap: 24px;
-}
-
-.contactInfoCards {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.contactCardItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 22px;
-  border-radius: 14px;
-}
-
-.contactCardItem.highlightCard {
-  border-color: #0284c7;
-  background: rgba(2, 132, 199, 0.06);
-}
-
-.contactCardIcon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(2, 132, 199, 0.12);
-  color: #0284c7;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-
-.contactCardIcon.whatsappIcon {
-  background: rgba(37, 211, 102, 0.12);
-  color: #25d366;
-}
-
-.contactCardIcon.emailIcon {
-  background: rgba(245, 158, 11, 0.12);
-  color: #f59e0b;
-}
-
-.contactCardIcon.locIcon {
-  background: rgba(239, 68, 68, 0.12);
-  color: #ef4444;
-}
-
-.contactCardItem h3 {
-  font-size: 15px;
-  font-weight: 800;
-  margin: 0 0 4px;
-}
-
-.contactCardItem p {
-  font-size: 12px;
-  color: var(--muted);
-  margin: 0 0 6px;
-}
-
-.phoneLinkLarge,
-.whatsappLinkLarge,
-.emailLinkLarge {
-  display: inline-block;
-  font-size: 17px;
-  font-weight: 800;
-  color: #0284c7;
-}
-
-.whatsappLinkLarge {
-  color: #10b981;
-}
-
-.contactNote {
-  display: block;
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-.contactFormWrap {
-  border-radius: 16px;
-  padding: 28px;
-}
-
-.formHeader {
-  margin-bottom: 20px;
-}
-
-.formHeader h2 {
-  font-size: 20px;
-  font-weight: 800;
-  margin: 0 0 4px;
-}
-
-.formHeader p {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 0;
-}
-
-.contactQueryForm {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.contactSecurityNote {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: #10b981;
-  font-weight: 600;
-}
-
-.querySuccess {
-  text-align: center;
-  padding: 30px 10px;
-}
-
-/* Refund Policy Styles */
-.alertNoticeCard {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 18px;
-  border-radius: 12px;
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  margin: 16px 0;
-}
-
-.textDanger {
-  color: #ef4444;
-}
-
-.fraudList {
-  margin: 8px 0 0;
-  padding-left: 20px;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-/* Directory Page Custom Enhancements */
-.categoryFilterRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.filterPillBtn {
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: var(--page);
-  border: 1px solid var(--line);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.filterPillBtn.active {
-  background: #0284c7;
-  color: #ffffff;
-  border-color: #0284c7;
-}
-
-.airportRowItem {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 18px;
-  align-items: center;
-}
-
-.rowPillRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.rowSalaryPill {
-  font-size: 12px;
-  font-weight: 800;
-  color: #0284c7;
-}
-
-.rowSecurityPill {
-  font-size: 11px;
-  font-weight: 700;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.12);
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-
-.rowFreePill {
-  font-size: 11px;
-  font-weight: 700;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.12);
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-
-.jobRowActionButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-.callBtnSmall {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 7px 12px;
-  border-radius: 8px;
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  color: #10b981;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-/* Detail Page Custom Enhancements */
-.detailTopMeta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.salaryPillLarge {
-  font-size: 15px;
-  font-weight: 800;
-  color: #0284c7;
-  padding: 4px 12px;
-  background: rgba(2, 132, 199, 0.1);
-  border-radius: 8px;
-}
-
-.securityPillLarge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.12);
-  padding: 4px 10px;
-  border-radius: 8px;
-}
-
-.freePillLarge {
-  font-size: 12px;
-  font-weight: 700;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.12);
-  padding: 4px 10px;
-  border-radius: 8px;
-}
-
-.detailIntro {
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--muted);
-  margin: 10px 0 16px;
-}
-
-.detailHeroActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.vlogActionButtons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Footer Custom Grid */
-.footerContainer {
-  padding: 48px 0 32px;
-}
-
-.footerTopGrid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
-  gap: 32px;
-  margin-bottom: 36px;
-}
-
-.footerBrand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-
-.footerBrand strong {
-  font-size: 18px;
-  display: block;
-}
-
-.footerBrand small {
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.footerDesc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin: 0 0 16px;
-}
-
-.footerGuarantees {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #0284c7;
-}
-
-.guaranteeItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footerLinksCol h4,
-.footerContactCol h4 {
-  font-size: 15px;
-  font-weight: 800;
-  margin: 0 0 16px;
-}
-
-.footerLinksCol ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footerLinksCol a {
-  font-size: 13px;
-  color: var(--muted);
-  transition: color 0.15s ease;
-}
-
-.footerLinksCol a:hover {
-  color: #0284c7;
-}
-
-.contactCard {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.contactItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 12px;
-}
-
-.contactItem svg {
-  color: #0284c7;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.contactLabel {
-  display: block;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.contactVal {
-  font-weight: 800;
-  color: #0284c7;
-  font-size: 14px;
-}
-
-.contactAddress {
-  color: var(--muted);
-  line-height: 1.4;
-}
-
-.footerApplyBtn {
-  margin-top: 8px;
-}
-
-.footerCopyright {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* ==========================================================
-   MOBILE RESPONSIVENESS (MOBILE-FIRST OPTIMIZATIONS)
+   RESPONSIVE BREAKPOINTS (MOBILE-FIRST)
    ========================================================== */
 @media (max-width: 1024px) {
   .pillarsGrid {
@@ -5136,21 +4850,9 @@ html[data-theme="dark"] .formSecurityDeclaration {
   .footerTopGrid {
     grid-template-columns: 1fr 1fr;
   }
-  .contactPageGrid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 768px) {
-  body {
-    padding-bottom: 64px; /* Ensure space for sticky mobile bottom bar */
-  }
-
-  .mobileStickyBar {
-    display: flex;
-    gap: 8px;
-  }
-
   .heroSliderWrapper,
   .sliderTrack {
     min-height: 480px;
@@ -5170,7 +4872,7 @@ html[data-theme="dark"] .formSecurityDeclaration {
   }
 
   .sliderArrow {
-    display: none; /* Swipe & dots for mobile */
+    display: none;
   }
 
   .pillarsGrid {
@@ -5191,54 +4893,30 @@ html[data-theme="dark"] .formSecurityDeclaration {
   .formGridTwo,
   .resultGrid,
   .resultSteps,
-  .appSummaryTable,
-  .testimonialsGrid,
-  .faqGrid,
-  .aboutPillars,
-  .aboutContactBox {
-    grid-template-columns: 1fr;
-  }
-
-  .applyHero {
-    grid-template-columns: 1fr;
-    padding: 20px;
-  }
-
-  .applyFormCard {
-    padding: 20px;
-  }
-
   .footerTopGrid {
     grid-template-columns: 1fr;
-    gap: 24px;
   }
 
-  .footerCopyright {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
+  .airportJobRailCard {
+    flex: 0 0 290px;
   }
 
-  .airportRowItem {
-    grid-template-columns: 1fr;
+  .testimonialCardRailItem {
+    flex: 0 0 280px;
   }
 
-  .jobRowActionButtons {
-    flex-direction: row;
-    width: 100%;
+  .floatingActionCorner {
+    bottom: 18px;
+    right: 16px;
   }
 
-  .jobRowActionButtons > * {
-    flex: 1;
-    text-align: center;
-  }
-
-  .trackerInputWrap {
-    flex-direction: column;
+  .floatingFab {
+    width: 48px;
+    height: 48px;
   }
 
   .ctaBandCard {
-    padding: 32px 18px;
+    padding: 30px 18px;
   }
 
   .ctaBtnRow {
@@ -5253,7 +4931,7 @@ html[data-theme="dark"] .formSecurityDeclaration {
 
 @media (max-width: 480px) {
   .slideTitle {
-    font-size: 24px;
+    font-size: 23px;
   }
 
   .slideFeaturesList {
@@ -5275,7 +4953,8 @@ html[data-theme="dark"] .formSecurityDeclaration {
   }
 
   .salaryBreakdownCard {
-    padding: 18px;
+    padding: 16px;
   }
 }
+
 

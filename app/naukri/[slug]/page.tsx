@@ -5,17 +5,17 @@ import {
   CalendarDays,
   CheckCircle2,
   ClipboardList,
-  ExternalLink,
   FileCheck,
-  FileText,
   Headphones,
   MapPin,
+  MessageSquare,
   Phone,
   Plane,
   Send,
   ShieldCheck,
   Sparkles
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getJobBySlug, jobs } from "../../jobs";
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return {
     title: `${job.title} - Salary ${job.salary} | All Naukri`,
-    description: `${job.body} Apply for ${job.title} at ${job.airport}. Lifetime Job Security, 100% Free Application, Salary ₹35,000 - ₹35,800/mo.`,
+    description: `${job.body} Apply for ${job.title} at ${job.airport}. Lifetime Job Security till 60 Years Retirement, 100% Free Application, Salary ${job.salary}.`,
     keywords: [
       job.title,
       job.type,
@@ -69,7 +69,8 @@ export default async function NaukriDetailPage({
     ["Designation", job.title],
     ["Airport Department", job.type],
     ["Starting Salary", job.salary],
-    ["Job Tenure", job.security],
+    ["Employment Tenure", job.security],
+    ["Retirement Age", job.retirementAge],
     ["Application Fee", job.fee],
     ["Airport Station", job.airport],
     ["Total Vacancy", job.vacancies],
@@ -80,61 +81,78 @@ export default async function NaukriDetailPage({
   ];
 
   const whatsappMessage = encodeURIComponent(
-    `Hello HR Team (All Naukri),\nI am interested in applying for: *${job.title}*\nSalary: ${job.salary}\nAirport: ${job.airport}\nPlease share joining details.`
+    `Hello HR Team (All Naukri),\nI am interested in applying for: *${job.title}*\nSalary: ${job.salary}\nAirport: ${job.airport}\nPlease verify my documents and schedule my joining.`
   );
 
   return (
     <main className="vlogPage">
       <article className="container vlogShell">
-        {/* Detail Hero Header */}
-        <header className="vlogHero softPanel">
-          <div className="detailTopMeta">
-            <span className="chip primaryChip">✈️ {job.type}</span>
-            <span className="salaryPillLarge">{job.salary}</span>
-            <span className="securityPillLarge">
-              <ShieldCheck size={15} />
-              Lifetime Job Guarantee
-            </span>
-            <span className="freePillLarge">100% Free Application</span>
+        {/* Detail Hero Header with Image */}
+        <header className="vlogHero softPanel detailHeroCard">
+          <div className="detailHeroBannerWrapper">
+            <Image
+              src={job.image}
+              alt={job.title}
+              fill
+              priority
+              className="detailHeroBannerImg"
+              sizes="(max-width: 1110px) 100vw, 1110px"
+            />
+            <div className="detailHeroBannerOverlay" />
+
+            <div className="detailBannerBadges">
+              <span className="chip primaryChip">✈️ {job.type}</span>
+              <span className="salaryPillLarge">{job.salary}</span>
+              <span className="securityPillLarge">
+                <ShieldCheck size={14} />
+                Tenure Till 60 Yrs
+              </span>
+              <span className="freePillLarge">100% Free Placement</span>
+            </div>
           </div>
 
-          <h1>{job.title}</h1>
-          <p className="detailIntro">{job.body}</p>
+          <div className="detailHeroBody">
+            <h1>{job.title}</h1>
+            <p className="detailIntro">{job.body}</p>
 
-          <div className="detailMeta">
-            <span>
-              <Building2 size={15} />
-              {job.org}
-            </span>
-            <span>
-              <MapPin size={15} />
-              {job.airport}
-            </span>
-            <span>
-              <CalendarDays size={15} />
-              Status: {job.date}
-            </span>
-          </div>
+            <div className="detailMeta">
+              <span>
+                <Building2 size={15} />
+                {job.org}
+              </span>
+              <span>
+                <MapPin size={15} />
+                {job.airport}
+              </span>
+              <span>
+                <CalendarDays size={15} />
+                Status: {job.date}
+              </span>
+            </div>
 
-          <div className="detailHeroActions">
-            <Link href="/apply" className="btnPrimary btnLarge btnGlow">
-              <Send size={18} />
-              <span>Apply Online Now (Free)</span>
-            </Link>
+            <div className="detailHeroActions">
+              {/* WhatsApp Direct Apply Button */}
+              <a
+                href={`https://wa.me/918929103286?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btnWhatsapp btnLarge"
+                title="Apply directly on WhatsApp: 8929103286"
+              >
+                <MessageSquare size={18} />
+                <span>Apply via WhatsApp (Free)</span>
+              </a>
 
-            <a href="tel:8929103286" className="btnSecondary btnLarge">
-              <Phone size={18} />
-              <span>Call HR: +91 8929103286</span>
-            </a>
+              <Link href="/apply" className="btnPrimary btnLarge btnGlow">
+                <Send size={18} />
+                <span>Fill Online Form</span>
+              </Link>
 
-            <a
-              href={`https://wa.me/918929103286?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noreferrer"
-              className="btnWhatsapp btnLarge"
-            >
-              <span>WhatsApp HR</span>
-            </a>
+              <a href="tel:8929103286" className="btnSecondary btnLarge">
+                <Phone size={18} />
+                <span>Call HR: +91 8929103286</span>
+              </a>
+            </div>
           </div>
         </header>
 
@@ -179,14 +197,27 @@ export default async function NaukriDetailPage({
                 <h3>Employment Security Assurance</h3>
               </div>
               <p>
-                <strong>Lifetime Job Security:</strong> Your role is permanent. There are no sudden
-                layoffs or arbitrary contract terminations. You remain employed unless you submit voluntary resignation.
+                <strong>Tenure Till 60 Years Retirement:</strong> Your role is permanent. There are no sudden
+                layoffs or arbitrary contract terminations. You remain employed with full company benefits
+                until voluntary resignation or official retirement at 60 years.
               </p>
               <div className="yojnaBadgeList">
                 <span>{job.type}</span>
                 <span>{job.vacancies}</span>
                 <span>{job.salary}</span>
-                <span>100% Free Process</span>
+                <span>Retirement: 60 Years</span>
+              </div>
+
+              <div className="highlightCardActions">
+                <a
+                  href={`https://wa.me/918929103286?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btnWhatsapp btnBlock btnSmall"
+                >
+                  <MessageSquare size={15} />
+                  <span>WhatsApp HR Now (8929103286)</span>
+                </a>
               </div>
             </div>
           </section>
@@ -263,19 +294,28 @@ export default async function NaukriDetailPage({
         <footer className="vlogOfficial softPanel">
           <div>
             <span className="chip primaryChip">Official HR Desk</span>
-            <h2>Apply Directly or Call for Immediate Verification</h2>
+            <h2>Apply Directly on WhatsApp or Call HR for Slot Booking</h2>
             <p>
               Helpline: <strong>+91 8929103286</strong> | Email: <strong>hr@allnaukri.in</strong>
             </p>
           </div>
           <div className="vlogActionButtons">
+            <a
+              href={`https://wa.me/918929103286?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noreferrer"
+              className="btnWhatsapp btnLarge"
+            >
+              <MessageSquare size={17} />
+              <span>Apply via WhatsApp</span>
+            </a>
             <Link href="/apply" className="btnPrimary btnLarge btnGlow">
-              <span>Apply Online (Free)</span>
+              <span>Online Form</span>
               <Send size={16} />
             </Link>
             <Link href="/sarkari-naukri" className="btnOutline">
               <ArrowLeft size={16} />
-              <span>Back to Openings</span>
+              <span>All Openings</span>
             </Link>
           </div>
         </footer>

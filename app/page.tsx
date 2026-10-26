@@ -1,11 +1,15 @@
 "use client";
 
 import {
+  ArrowLeft,
   ArrowRight,
   BriefcaseBusiness,
   Building2,
   CalendarDays,
   CheckCircle2,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Clock,
   Compass,
   FileCheck,
@@ -13,16 +17,17 @@ import {
   Headphones,
   HelpCircle,
   MapPin,
+  MessageSquare,
   Phone,
   Plane,
   Send,
-  ShieldAlert,
   ShieldCheck,
   Sparkles,
   Users
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { airportCategories, jobs, type AirportJob } from "./jobs";
 import { AirportBannerSlider } from "./components/AirportBannerSlider";
 import { ApplicationTracker } from "./components/ApplicationTracker";
@@ -32,6 +37,10 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [selectedRoleForApply, setSelectedRoleForApply] = useState<string | undefined>(undefined);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0); // First open by default
+
+  const jobScrollRef = useRef<HTMLDivElement>(null);
+  const testimonialScrollRef = useRef<HTMLDivElement>(null);
 
   const filteredJobs = useMemo(() => {
     if (selectedCategory === "all") return jobs;
@@ -42,6 +51,54 @@ export default function HomePage() {
     setSelectedRoleForApply(roleName);
     setIsApplyModalOpen(true);
   }
+
+  // Scroll controls for Jobs horizontal rail
+  function scrollJobs(direction: "left" | "right") {
+    if (jobScrollRef.current) {
+      const scrollAmount = direction === "left" ? -340 : 340;
+      jobScrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  }
+
+  // Scroll controls for Testimonials rail
+  function scrollTestimonials(direction: "left" | "right") {
+    if (testimonialScrollRef.current) {
+      const scrollAmount = direction === "left" ? -320 : 320;
+      testimonialScrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  }
+
+  // FAQ Toggle
+  function toggleFaq(index: number) {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  }
+
+  const faqs = [
+    {
+      q: "What does 'Lifetime Job Security till 60 Years' mean?",
+      a: "It means selected candidates are appointed to permanent aviation services staff positions with complete job security until official retirement age of 60 years. There is no arbitrary termination or layoff as long as general service code and BCAS decorum are maintained."
+    },
+    {
+      q: "Is there any registration or medical fee for applying?",
+      a: "No, absolutely ₹0! All Naukri operates on a 100% free placement model. We do NOT charge any money for application forms, interviews, uniform, or airport gate passes. Beware of fake agents."
+    },
+    {
+      q: "What is the monthly salary structure?",
+      a: "Monthly salaries range between ₹28,500 to ₹42,500 depending on the role, qualifications, and shift duty. Ground Staff and Ticketing earn ₹34,500 - ₹39,500, VIP Lounge Executives earn up to ₹42,500, plus PF, ESIC medical benefits, and meal coupons."
+    },
+    {
+      q: "Can 10th or 12th pass freshers apply?",
+      a: "Yes! 10th pass candidates can apply for Ramp & Baggage Handling, Air Cargo Associate, and Cabin Turnaround. 12th pass and Graduates can apply for Ground Staff, Customer Care, Airline Ticketing, and Security Screener roles. Freshers are warmly welcomed."
+    },
+    {
+      q: "How soon do I receive my joining letter?",
+      a: "Initial document verification is completed within 24 to 48 hours. After your telephonic round and airport background clearance, official joining letter and Airport Entry Pass (AEP) are issued within 3 to 7 working days."
+    },
+    {
+      q: "How can I directly contact the HR department?",
+      a: "You can call or WhatsApp our official HR helpline at +91 8929103286 (Mon-Sat, 9:30 AM to 6:30 PM), or email your documents directly to hr@allnaukri.in."
+    }
+  ];
 
   return (
     <main className="homePageMain">
@@ -56,7 +113,7 @@ export default function HomePage() {
               <ShieldCheck size={24} />
             </div>
             <div>
-              <h3>Lifetime Job Security</h3>
+              <h3>Service Till 60 Yrs (Lifetime)</h3>
               <p>Permanent employment tenure. No layoff or termination without voluntary resignation.</p>
             </div>
           </div>
@@ -66,8 +123,8 @@ export default function HomePage() {
               <span>₹</span>
             </div>
             <div>
-              <h3>₹35,000 - ₹35,800 / Mo</h3>
-              <p>Fixed monthly starting salary + PF, ESI, duty meal coupons & cab pickup/drop.</p>
+              <h3>₹31,000 - ₹42,500 / Mo</h3>
+              <p>Role-based attractive monthly salary + PF, ESI, duty meal coupons & night cab.</p>
             </div>
           </div>
 
@@ -124,96 +181,124 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Active Airport Openings Grid */}
+      {/* 4. Active Airport Openings (Horizontal Scroll Rail: Left to Right / Right to Left) */}
       <section className="container openingsSection" id="openings" aria-label="Active Openings">
         <div className="sectionTopInfo">
           <div>
-            <h3>Active Airport Vacancies ({filteredJobs.length} Positions)</h3>
-            <p>Freshers and experienced candidates both eligible. Direct joining on documentation clearance.</p>
+            <div className="sectionEyebrow">
+              <Plane size={15} />
+              <span>LIVE VACANCIES RAIL</span>
+            </div>
+            <h3>Active Airport Positions ({filteredJobs.length} Openings)</h3>
+            <p>Scroll horizontally to view roles, salary packages, and apply directly via WhatsApp or Online Form.</p>
           </div>
-          <button
-            type="button"
-            onClick={() => handleOpenApply()}
-            className="btnPrimary btnSmall hideOnMobile"
-          >
-            <span>Express Online Apply</span>
-            <ArrowRight size={15} />
-          </button>
+
+          {/* Horizontal Scroll Controls */}
+          <div className="railControls">
+            <button
+              type="button"
+              className="railArrowBtn"
+              onClick={() => scrollJobs("left")}
+              aria-label="Scroll Openings Left"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              type="button"
+              className="railArrowBtn"
+              onClick={() => scrollJobs("right")}
+              aria-label="Scroll Openings Right"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
 
-        <div className="airportJobsGrid">
-          {filteredJobs.map((job) => (
-            <article className="airportJobCard softPanel" key={job.slug}>
-              <div className="cardTop">
-                <div className="typeBadgeWrap">
-                  <span className="chip primaryChip">{job.type}</span>
-                  {job.badge && <span className="chip highlightChip">{job.badge}</span>}
-                </div>
-                <span className="liveJoiningPill">
-                  <span className="greenDot" />
-                  {job.date}
-                </span>
-              </div>
+        {/* Horizontal Scrolling Rail */}
+        <div className="horizontalJobsRail" ref={jobScrollRef}>
+          {filteredJobs.map((job) => {
+            const waMsg = encodeURIComponent(
+              `Hello HR Team (All Naukri),\nI want to apply for *${job.title}*.\nSalary: ${job.salary}\nAirport: ${job.airport}\nPlease verify my eligibility.`
+            );
 
-              <h3 className="jobCardTitle">
-                <Link href={`/naukri/${job.slug}`}>{job.title}</Link>
-              </h3>
+            return (
+              <article className="airportJobRailCard softPanel" key={job.slug}>
+                {/* Image Banner on Job Card */}
+                <div className="cardThumbWrapper">
+                  <Image
+                    src={job.image}
+                    alt={job.title}
+                    fill
+                    className="cardThumbImg"
+                    sizes="(max-width: 768px) 300px, 340px"
+                  />
+                  <div className="cardThumbOverlay" />
+                  <span className="thumbTypeChip">{job.type}</span>
+                  <span className="thumbSalaryChip">{job.salary}</span>
+                </div>
 
-              <p className="jobCardDesc">{job.body}</p>
+                <div className="cardRailBody">
+                  <div className="cardMetaTop">
+                    <span className="tenureBadge">
+                      <ShieldCheck size={13} />
+                      Tenure till 60 Yrs
+                    </span>
+                    <span className="freeBadge">100% Free</span>
+                  </div>
 
-              <div className="jobKeySpecs">
-                <div className="specRow">
-                  <span className="specLabel">Salary Package:</span>
-                  <strong className="specSalary">{job.salary}</strong>
-                </div>
-                <div className="specRow">
-                  <span className="specLabel">Tenure:</span>
-                  <strong className="textSuccess">Lifetime Permanent Assurance</strong>
-                </div>
-                <div className="specRow">
-                  <span className="specLabel">Qualification:</span>
-                  <span>{job.qualification}</span>
-                </div>
-                <div className="specRow">
-                  <span className="specLabel">Airport Hub:</span>
-                  <span>
-                    <MapPin size={13} className="inlineIcon" />
-                    {job.airport}
-                  </span>
-                </div>
-                <div className="specRow">
-                  <span className="specLabel">Application Fee:</span>
-                  <span className="textFree">{job.fee}</span>
-                </div>
-              </div>
+                  <h3 className="railCardTitle">
+                    <Link href={`/naukri/${job.slug}`}>{job.title}</Link>
+                  </h3>
 
-              <div className="jobCardActions">
-                <button
-                  type="button"
-                  onClick={() => handleOpenApply(job.title)}
-                  className="btnPrimary btnBlock"
-                  aria-label={`Apply for ${job.title}`}
-                >
-                  <Send size={15} />
-                  <span>Apply Online (Free)</span>
-                </button>
+                  <p className="railCardDesc">{job.body}</p>
 
-                <div className="secondaryActionRow">
-                  <Link href={`/naukri/${job.slug}`} className="btnOutline" title="View Full Details">
-                    <span>View Details</span>
-                  </Link>
-                  <a
-                    href="tel:8929103286"
-                    className="btnCallQuick"
-                    title="Call HR Directly about this position"
-                  >
-                    <Phone size={15} />
-                    <span>Call HR</span>
-                  </a>
+                  <div className="railCardSpecs">
+                    <div className="specMiniRow">
+                      <span>Airport:</span>
+                      <strong>{job.airport.split("&")[0]}</strong>
+                    </div>
+                    <div className="specMiniRow">
+                      <span>Eligibility:</span>
+                      <strong>{job.qualification}</strong>
+                    </div>
+                    <div className="specMiniRow">
+                      <span>Retirement:</span>
+                      <strong className="textSuccess">{job.retirementAge}</strong>
+                    </div>
+                  </div>
+
+                  <div className="railCardButtons">
+                    {/* Primary Apply via WhatsApp (Direct to 8929103286 as user requested!) */}
+                    <a
+                      href={`https://wa.me/918929103286?text=${waMsg}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btnWhatsapp btnBlock btnSmall"
+                      title="Apply directly on WhatsApp: 8929103286"
+                    >
+                      <MessageSquare size={14} />
+                      <span>Apply via WhatsApp (Free)</span>
+                    </a>
+
+                    <div className="splitBtnRow">
+                      <button
+                        type="button"
+                        onClick={() => handleOpenApply(job.title)}
+                        className="btnPrimary btnSmall"
+                      >
+                        <Send size={13} />
+                        <span>Online Form</span>
+                      </button>
+
+                      <Link href={`/naukri/${job.slug}`} className="btnOutline btnSmall">
+                        <span>Details</span>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -239,7 +324,7 @@ export default function HomePage() {
           <div className="processStepCard">
             <div className="stepNumber">01</div>
             <h4>Free Online Application</h4>
-            <p>Fill out our simple mobile form or contact HR on phone/WhatsApp at 8929103286 with zero registration charge.</p>
+            <p>Fill out our simple mobile form or WhatsApp HR at 8929103286 with zero registration charge.</p>
           </div>
 
           <div className="processStepCard">
@@ -263,7 +348,7 @@ export default function HomePage() {
           <div className="processStepCard highlightStep">
             <div className="stepNumber">05</div>
             <h4>Permanent Joining Letter</h4>
-            <p>Receive official appointment letter with ₹35,000 - ₹35,800/mo salary and lifetime job security assurance.</p>
+            <p>Receive official appointment letter with permanent service guarantee till retirement at 60 years.</p>
           </div>
         </div>
       </section>
@@ -276,23 +361,23 @@ export default function HomePage() {
               <ShieldCheck size={18} />
               <span>OFFICIAL EMPLOYMENT POLICY</span>
             </div>
-            <h2>Why Our Lifetime Job Guarantee Matters</h2>
+            <h2>Service Security Till 60 Years Retirement</h2>
             <p className="lifetimeLead">
               In private sector jobs, employees often worry about sudden layoffs or contractual terminations.
-              At All Naukri Airport Services, we eliminate this anxiety completely.
+              At All Naukri Airport Services, your tenure is permanent until official retirement at 60 years.
             </p>
 
             <div className="benefitsChecklist">
               <div className="checkItem">
                 <CheckCircle2 size={18} className="checkIcon" />
                 <div>
-                  <strong>No Arbitrary Termination:</strong> You hold a permanent position. You remain an employee until you voluntarily submit your resignation.
+                  <strong>Permanent Retirement Age 60 Years:</strong> You hold a permanent position. You remain an employee until voluntary resignation or age 60 retirement.
                 </div>
               </div>
               <div className="checkItem">
                 <CheckCircle2 size={18} className="checkIcon" />
                 <div>
-                  <strong>Guaranteed Monthly Salary:</strong> Fixed ₹35,000 – ₹35,800 disbursed strictly on time to your bank account every month.
+                  <strong>Guaranteed Monthly Salary:</strong> Salary ₹28,500 – ₹42,500 disbursed strictly on time to your bank account every month.
                 </div>
               </div>
               <div className="checkItem">
@@ -329,38 +414,38 @@ export default function HomePage() {
             <div className="salaryBreakdownCard">
               <div className="salaryCardHead">
                 <span>OFFICIAL SALARY STRUCTURE</span>
-                <strong>Airport Staff Grade-1</strong>
+                <strong>Aviation Ground Staff Grade-1</strong>
               </div>
               <div className="salaryTable">
                 <div className="salRow">
                   <span>Basic Starting Pay</span>
-                  <strong>₹26,500</strong>
+                  <strong>₹24,500 - ₹28,500</strong>
                 </div>
                 <div className="salRow">
                   <span>Airport Duty Allowance</span>
-                  <strong>₹4,500</strong>
+                  <strong>₹4,500 - ₹5,500</strong>
                 </div>
                 <div className="salRow">
-                  <span>Conveyance & Shift Allowance</span>
-                  <strong>₹4,000 - ₹4,800</strong>
+                  <span>Conveyance & Shift Perks</span>
+                  <strong>₹4,000 - ₹8,500</strong>
                 </div>
                 <div className="salRow totalRow">
-                  <span>Monthly In-Hand Range</span>
-                  <span className="totalVal">₹35,000 - ₹35,800</span>
+                  <span>Monthly Range</span>
+                  <span className="totalVal">₹31,000 - ₹42,500</span>
                 </div>
               </div>
               <div className="salaryPerksList">
                 <span>✓ Provident Fund (PF)</span>
                 <span>✓ ESI Medical Insurance</span>
                 <span>✓ Airport Duty Meals</span>
-                <span>✓ Night Shift Free Cab</span>
+                <span>✓ Free Night Shift Taxi</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 8. Candidate Testimonials */}
+      {/* 8. Candidate Testimonials (Horizontal Scrolling Marquee Rail) */}
       <section className="container testimonialsSection" aria-label="Testimonials">
         <div className="sectionHeader textCenter">
           <div className="sectionEyebrow">
@@ -368,42 +453,61 @@ export default function HomePage() {
             <span>REAL STORIES FROM TERMINALS</span>
           </div>
           <h2>What Our Airport Staff Says</h2>
-          <p>Real experiences from candidates placed at major airports across India.</p>
+          <p>Scroll horizontally to read genuine candidate placement experiences across Indian airports.</p>
         </div>
 
-        <div className="testimonialsGrid">
-          <div className="testimonialCard softPanel">
+        <div className="testimonialScrollControls">
+          <button
+            type="button"
+            className="railArrowBtn"
+            onClick={() => scrollTestimonials("left")}
+            aria-label="Scroll Reviews Left"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            type="button"
+            className="railArrowBtn"
+            onClick={() => scrollTestimonials("right")}
+            aria-label="Scroll Reviews Right"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+
+        <div className="horizontalTestimonialsRail" ref={testimonialScrollRef}>
+          <div className="testimonialCardRailItem softPanel">
             <div className="stars">★★★★★</div>
             <p className="testimonialText">
-              &quot;I applied through All Naukri for Ground Staff Customer Service at Delhi IGI Airport. Within 2 days my verification was completed without paying a single rupee. I have been working here for 6 months now getting ₹35,500 every month on time. The lifetime job assurance gives immense peace of mind.&quot;
+              &quot;I applied through All Naukri for Ground Staff Customer Service at Delhi IGI Airport. Within 2 days my verification was completed without paying a single rupee. I have been working here for 6 months getting ₹36,500 on time. The service tenure till 60 years retirement gives immense peace of mind.&quot;
             </p>
             <div className="testimonialAuthor">
               <div className="authorAvatar">RK</div>
               <div>
                 <strong>Rohit Kumar</strong>
-                <small>Ground Staff Executive, IGI Airport Terminal 3, New Delhi</small>
+                <small>Ground Staff Executive, IGI T3 Delhi</small>
               </div>
             </div>
           </div>
 
-          <div className="testimonialCard softPanel">
+          <div className="testimonialCardRailItem softPanel">
             <div className="stars">★★★★★</div>
             <p className="testimonialText">
-              &quot;After completing 12th, I was worried about stable jobs. Many fake consultants asked for money, but All Naukri is 100% free! Their HR coordinator helped me with document verification and got me placed in Ramp Baggage Handling at Mumbai CSMIA Airport. Starting salary was ₹35,200 plus food coupons.&quot;
+              &quot;After completing 12th, fake agents were demanding ₹50,000 for airport jobs. All Naukri was 100% free! Their HR connected on WhatsApp 8929103286, verified my 12th marksheet, and I got placed in Ramp Handling at Mumbai CSMIA Airport with ₹34,200 salary plus canteen food.&quot;
             </p>
             <div className="testimonialAuthor">
               <div className="authorAvatar">AS</div>
               <div>
                 <strong>Aakash Sharma</strong>
-                <small>Ramp & Baggage Handler, Mumbai CSMIA Airport</small>
+                <small>Ramp & Baggage Handler, Mumbai CSMIA</small>
               </div>
             </div>
           </div>
 
-          <div className="testimonialCard softPanel">
+          <div className="testimonialCardRailItem softPanel">
             <div className="stars">★★★★★</div>
             <p className="testimonialText">
-              &quot;Working as a Ticketing & Boarding Pass Assistant at Kempegowda Bengaluru Airport has transformed my career. The work atmosphere is very professional, salary is ₹35,800, and shift timings are convenient. Thanks to All Naukri team for quick placement.&quot;
+              &quot;Working as a Ticketing & Boarding Pass Assistant at Kempegowda Bengaluru Airport has transformed my career. The work atmosphere is very professional, salary is ₹38,500, and shift timings are convenient. Thanks to All Naukri team for quick placement.&quot;
             </p>
             <div className="testimonialAuthor">
               <div className="authorAvatar">PS</div>
@@ -413,10 +517,24 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
+          <div className="testimonialCardRailItem softPanel">
+            <div className="stars">★★★★★</div>
+            <p className="testimonialText">
+              &quot;Selected as Airport Security Assistant at Hyderabad RGIA Airport. Salary ₹36,000 with PF and health card. Direct joining with zero application charge. Very reliable and legitimate portal.&quot;
+            </p>
+            <div className="testimonialAuthor">
+              <div className="authorAvatar">VK</div>
+              <div>
+                <strong>Vikram Kulkarni</strong>
+                <small>Security Screener, Hyderabad RGIA</small>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 9. Frequently Asked Questions */}
+      {/* 9. Frequently Asked Questions (Dropdown Accordion as user requested!) */}
       <section className="container faqSection" id="faq" aria-label="Frequently Asked Questions">
         <div className="sectionHeader textCenter">
           <div className="sectionEyebrow">
@@ -424,63 +542,35 @@ export default function HomePage() {
             <span>CLARIFY YOUR DOUBTS</span>
           </div>
           <h2>Frequently Asked Questions</h2>
-          <p>Everything you need to know about Airport Ground Staff careers and joining.</p>
+          <p>Click on any question to view clear details regarding airport hiring and retirement tenure.</p>
         </div>
 
-        <div className="faqGrid">
-          <div className="faqCard softPanel">
-            <h4>What does &quot;Lifetime Job Security&quot; mean?</h4>
-            <p>
-              It means your appointment is permanent and stable. Unlike contractual or casual jobs,
-              you cannot be terminated arbitrarily. You remain in service until you voluntarily choose
-              to resign or transition to higher roles.
-            </p>
-          </div>
+        <div className="faqAccordionList">
+          {faqs.map((faq, index) => {
+            const isOpen = openFaqIndex === index;
+            return (
+              <div
+                key={index}
+                className={`faqAccordionItem softPanel ${isOpen ? "open" : ""}`}
+              >
+                <button
+                  type="button"
+                  className="faqQuestionBtn"
+                  onClick={() => toggleFaq(index)}
+                  aria-expanded={isOpen}
+                >
+                  <span className="faqQuestionText">{faq.q}</span>
+                  <ChevronDown size={19} className="faqChevron" />
+                </button>
 
-          <div className="faqCard softPanel">
-            <h4>Is there any registration or processing fee?</h4>
-            <p>
-              <strong>No, absolutely zero fee!</strong> All Naukri does NOT charge any fee for application,
-              interviews, or placement. If anyone demands money in the name of airport jobs, immediately
-              report it to our HR desk at 8929103286 or hr@allnaukri.in.
-            </p>
-          </div>
-
-          <div className="faqCard softPanel">
-            <h4>What is the monthly salary structure?</h4>
-            <p>
-              The starting monthly in-hand salary ranges between <strong>₹35,000 to ₹35,800</strong>,
-              depending upon the role, shift timings, and airport station. In addition, you receive
-              PF, ESI medical insurance, airport duty meals, and cab pickup/drop for night shifts.
-            </p>
-          </div>
-
-          <div className="faqCard softPanel">
-            <h4>Can 10th or 12th pass freshers apply?</h4>
-            <p>
-              Yes! 10th pass candidates can apply for Ramp & Baggage Handling, Air Cargo Associate,
-              and Housekeeping Turnaround. 12th pass and Graduates can apply for Ground Staff, Customer
-              Service, Airline Ticketing, Security Screening, and VIP Lounges.
-            </p>
-          </div>
-
-          <div className="faqCard softPanel">
-            <h4>How long does the joining process take?</h4>
-            <p>
-              Typically, initial document verification is completed within 24 to 48 hours. After your
-              brief HR interaction and medical clearance, airport entry pass issuance takes 3 to 7 working
-              days before formal joining.
-            </p>
-          </div>
-
-          <div className="faqCard softPanel">
-            <h4>How do I reach the official HR department?</h4>
-            <p>
-              You can directly call our HR helpline at <strong>+91 8929103286</strong> (Monday to Saturday,
-              9:30 AM to 6:30 PM), send a WhatsApp message to the same number, or email your details to{" "}
-              <strong>hr@allnaukri.in</strong>.
-            </p>
-          </div>
+                {isOpen && (
+                  <div className="faqAnswerPanel">
+                    <p>{faq.a}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -491,32 +581,33 @@ export default function HomePage() {
             <span className="ctaBadge">⚡ IMMEDIATE VACANCIES OPEN</span>
             <h2>Ready to Start Your Career at India&apos;s Major Airports?</h2>
             <p>
-              Join 800+ selected candidates. 100% Free Application • Lifetime Job Assurance • Starting Pay ₹35,000 - ₹35,800/Month.
+              Join 800+ selected candidates. 100% Free Application • Service Guaranteed Till 60 Years • Starting Pay ₹31,000 - ₹42,500/Month.
             </p>
 
             <div className="ctaBtnRow">
+              <a
+                href="https://wa.me/918929103286?text=Hello%20HR%20All%20Naukri%2C%20I%20want%20to%20apply%20for%20Airport%20Job."
+                target="_blank"
+                rel="noreferrer"
+                className="btnWhatsapp btnLarge"
+              >
+                <MessageSquare size={18} />
+                <span>Apply via WhatsApp (+91 8929103286)</span>
+              </a>
+
               <button
                 type="button"
                 onClick={() => handleOpenApply()}
                 className="btnPrimary btnLarge btnGlow"
                 id="cta-bottom-apply"
               >
-                <span>Apply Online Now (Free)</span>
+                <span>Fill Online Form (Free)</span>
                 <Send size={18} />
               </button>
 
               <a href="tel:8929103286" className="btnSecondary btnLarge">
                 <Phone size={18} />
                 <span>Call HR: +91 8929103286</span>
-              </a>
-
-              <a
-                href="https://wa.me/918929103286?text=Hello%20HR%20All%20Naukri%2C%20I%20am%20applying%20for%20Airport%20Job."
-                target="_blank"
-                rel="noreferrer"
-                className="btnWhatsapp btnLarge"
-              >
-                <span>Chat on WhatsApp</span>
               </a>
             </div>
           </div>

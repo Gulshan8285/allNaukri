@@ -5,12 +5,14 @@ import {
   CheckCircle2,
   FileText,
   MapPin,
+  MessageSquare,
   Phone,
   Plane,
   Search,
   Send,
   ShieldCheck
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { AirportJob } from "../jobs";
@@ -86,62 +88,82 @@ export function SarkariNaukriFilters({ jobs }: { jobs: AirportJob[] }) {
       </div>
 
       <div className="jobList">
-        {filteredJobs.map((job) => (
-          <article className="jobRow softPanel airportRowItem" key={job.slug}>
-            <div className="jobRowIcon">
-              <Plane size={22} />
-            </div>
+        {filteredJobs.map((job) => {
+          const waMsg = encodeURIComponent(
+            `Hello HR Team (All Naukri),\nI want to apply for *${job.title}*.\nSalary: ${job.salary}\nAirport: ${job.airport}\nPlease verify my eligibility.`
+          );
 
-            <div className="jobRowBody">
-              <div className="rowPillRow">
-                <span className="chip primaryChip">{job.type}</span>
-                <span className="rowSalaryPill">{job.salary}</span>
-                <span className="rowSecurityPill">Lifetime Security</span>
-                <span className="rowFreePill">100% Free</span>
+          return (
+            <article className="jobRow softPanel airportRowItem" key={job.slug}>
+              {/* Image Thumbnail on List Row */}
+              <div className="rowImgThumb">
+                <Image
+                  src={job.image}
+                  alt={job.title}
+                  width={110}
+                  height={80}
+                  className="rowImg"
+                />
               </div>
 
-              <h2>
-                <Link href={`/naukri/${job.slug}`}>{job.title}</Link>
-              </h2>
+              <div className="jobRowBody">
+                <div className="rowPillRow">
+                  <span className="chip primaryChip">{job.type}</span>
+                  <span className="rowSalaryPill">{job.salary}</span>
+                  <span className="rowSecurityPill">Retirement: 60 Yrs</span>
+                  <span className="rowFreePill">100% Free</span>
+                </div>
 
-              <p>{job.body}</p>
+                <h2>
+                  <Link href={`/naukri/${job.slug}`}>{job.title}</Link>
+                </h2>
 
-              <div className="jobRowMeta">
-                <span>
-                  <MapPin size={14} />
-                  {job.airport}
-                </span>
-                <span>
-                  <strong>Eligibility:</strong> {job.qualification}
-                </span>
-                <span>
-                  <CalendarDays size={14} />
-                  {job.date}
-                </span>
+                <p>{job.body}</p>
+
+                <div className="jobRowMeta">
+                  <span>
+                    <MapPin size={14} />
+                    {job.airport.split("&")[0]}
+                  </span>
+                  <span>
+                    <strong>Eligibility:</strong> {job.qualification}
+                  </span>
+                  <span>
+                    <CalendarDays size={14} />
+                    {job.date}
+                  </span>
+                </div>
               </div>
-            </div>
 
-            <div className="jobRowActionButtons">
-              <button
-                type="button"
-                onClick={() => handleOpenApply(job.title)}
-                className="btnPrimary btnSmall"
-              >
-                <Send size={14} />
-                <span>Apply Free</span>
-              </button>
+              <div className="jobRowActionButtons">
+                {/* Direct WhatsApp apply button */}
+                <a
+                  href={`https://wa.me/918929103286?text=${waMsg}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btnWhatsapp btnSmall"
+                  title="Apply via WhatsApp: 8929103286"
+                >
+                  <MessageSquare size={14} />
+                  <span>WhatsApp Apply</span>
+                </a>
 
-              <Link className="detailButton" href={`/naukri/${job.slug}`}>
-                Details
-              </Link>
+                <button
+                  type="button"
+                  onClick={() => handleOpenApply(job.title)}
+                  className="btnPrimary btnSmall"
+                >
+                  <Send size={14} />
+                  <span>Online Form</span>
+                </button>
 
-              <a href="tel:8929103286" className="callBtnSmall" title="Call HR Helpline">
-                <Phone size={14} />
-                <span>Call HR</span>
-              </a>
-            </div>
-          </article>
-        ))}
+                <Link className="detailButton" href={`/naukri/${job.slug}`}>
+                  Details
+                </Link>
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       {filteredJobs.length === 0 && (
